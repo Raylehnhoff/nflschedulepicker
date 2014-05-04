@@ -1,9 +1,44 @@
-﻿function getParam(a) { var d = location.search.substr(location.search.indexOf("?") + 1), c = "", b; d = d.split("&"); for (b = 0; b < d.length; b++) { temp = d[b].split("="); if ([temp[0]] == a) { c = temp[1] } } return c } function setCookie(a, d, b) { var e = new Date(), c; e.setDate(e.getDate() + b); c = escape(d) + ((b == null) ? "" : "; expires=" + e.toUTCString()); document.cookie = a + "=" + c } function set_game_cookie(c, a) { var b = "-" + c.join("") + "_"; a = (a == undefined) ? false : a; if (!a) { setCookie(games_cookie_name, b, 999) } set_visible_cookie(b) } function set_visible_cookie(a) { document.getElementById("save_string").innerHTML = "http://raylehnhoff.github.io/nflschedulepicker/?a=" + a } function getCookie(b) { var c, a, e, d = document.cookie.split(";"); for (c = 0; c < d.length; c++) { a = d[c].substr(0, d[c].indexOf("=")); e = d[c].substr(d[c].indexOf("=") + 1); a = a.replace(/^\s+|\s+$/g, ""); if (a == b) { return unescape(e) } } } var games_cookie_name = "NFL2013", cookie_letter_length = 86, cookie64_re = /-[A-Za-z0-9\-_]{86}_?/, base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_", number_of_weeks = 17,
+﻿function getParam(a) {
+    var d = location.search.substr(location.search.indexOf("?") + 1),
+        c = "", b; d = d.split("&"); for (b = 0; b < d.length; b++) {
+        temp = d[b].split("="); if ([temp[0]] == a) { c = temp[1] }
+        }
+        return c
+}
+function setCookie(a, d, b) {
+    var e = new Date(), c; e.setDate(e.getDate() + b); c = escape(d) + ((b == null) ? "" : "; expires=" + e.toUTCString());
+    document.cookie = a + "=" + c
+}
+function set_game_cookie(c, a) {
+    var b = "-" + c.join("") + "_"; a = (a == undefined) ? false : a;
+    if (!a) {
+        setCookie(games_cookie_name, b, 999)
+    } set_visible_cookie(b)
+}
+function set_visible_cookie(a) {
+    document.getElementById("save_string").innerHTML = "http://raylehnhoff.github.io/nflschedulepicker/?a=" + a
+}
+function getCookie(b) {
+    var c, a, e, d = document.cookie.split(";");
+    for (c = 0; c < d.length; c++) {
+        a = d[c].substr(0, d[c].indexOf("="));
+        e = d[c].substr(d[c].indexOf("=") + 1);
+        a = a.replace(/^\s+|\s+$/g, "");
+        if (a == b) {
+            return unescape(e);
+        }
+    }
+}
+var games_cookie_name = "NFL2014",
+    cookie_letter_length = 86,
+    cookie64_re = /-[A-Za-z0-9\-_]{86}_?/,
+    base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
+    number_of_weeks = 17,
     week_lists = [
-        ["NO-ATL", "BUF-CHI", "GB-SEA", "MIN-STL", "NE-MIA", "NYG-DET", "JAC-PHI", "CLE-PIT", "CIN-BAL", "WAS-HOU", "IND-DEN", "CAR-TB", "SD-ARI", "OAK-NYJ", "SF-DAL", "TEN-KC"],
-        ["NYJ-GB", "MIA-BUF", "ATL-CIN", "NO-CLE", "DAL-TEN", "NE-MIN", "ARI-NYG", "JAC-WAS", "DET-CAR", "PIT-BAL", "PHI-IND", "KC-DEN", "CHI-SF", "HOU-OAK", "SEA-SD", "STL-TB"],
-        ["IND-JAC", "SD-BUF", "TEN-CIN", "PIT-CAR", "GB-DET", "DAL-STL", "OAK-NE", "MIN-NO", "HOU-NYG", "WAS-PHI", "TB-ATL", "SF-ARI", "CHI-NYJ", "DEN-SEA", "BAL-CLE", "KC-MIA"],
-        ["CAR-BAL", "GB-CHI", "TEN-IND", "MIA-OAK", "ATL-MIN", "DET-NYJ", "NE-KC", "NO-DAL", "BUF-HOU", "JAC-SD", "PHI-SF", "NYG-WAS", "TB-PIT"],
+        ["GB-SEA", "NO-ATL", "BUF-CHI", "TEN-KC", "MIN-STL", "NE-MIA", "OAK-NYJ", "JAC-PHI", "CLE-PIT", "CIN-BAL", "WAS-HOU", "SF-DAL", "CAR-TB", "IND-DEN", "NYG-DET", "SD-ARI"],
+        ["PIT-BAL", "MIA-BUF", "ATL-CIN", "NO-CLE", "DAL-TEN", "NE-MIN", "ARI-NYG", "JAC-WAS", "DET-CAR", "SEA-SD", "STL-TB", "KC-DEN", "NYJ-GB", "HOU-OAK", "CHI-SF", "PHI-IND"],
+        ["TB-ATL", "SD-BUF", "TEN-CIN", "BAL-CLE", "GB-DET", "DAL-STL", "OAK-NE", "MIN-NO", "HOU-NYG", "WAS-PHI", "IND-JAC", "SF-ARI", "KC-MIA", "DEN-SEA", "PIT-CAR", "CHI-NYJ"],
+        ["NYG-WAS", "GB-CHI", "TEN-IND", "MIA-OAK", "ATL-MIN", "DET-NYJ", "TB-PIT", "CAR-BAL", "BUF-HOU", "JAC-SD", "PHI-SF", "NO-DAL", "NE-KC"],
         ["MIN-GB","HOU-DAL", "BUF-DET", "CLE-TEN", "BAL-IND", "TB-NO", "ATL-NYG", "STL-PHI", "CHI-CAR", "PIT-JAC", "ARI-DEN", "NYJ-SD", "KC-SF", "CIN-NE", "SEA-WAS"],
         ["IND-HOU", "CHI-ATL", "NE-BUF", "CAR-CIN", "PIT-CLE", "JAC-TEN", "GB-MIA", "DET-MIN", "DEN-NYJ", "BAL-TB", "SD-OAK", "WAS-ARI", "DAL-SEA", "NYG-PHI", "SF-STL"],
         ["NYJ-NE","MIN-BUF", "MIA-CHI", "NO-DET", "CAR-GB", "CIN-IND", "SEA-STL", "TEN-WAS", "CLE-JAC", "ATL-BAL", "KC-SD", "NYG-DAL", "ARI-OAK", "SF-DEN", "HOU-PIT"],
@@ -12,15 +47,34 @@
         ["CLE-CIN", "KC-BUF", "MIA-DET", "SF-NO", "PIT-NYJ", "ATL-TB", "DAL-JAC", "TEN-BAL", "DEN-OAK", "STL-ARI", "NYG-SEA", "CHI-GB", "CAR-PHI"],
         ["BUF-MIA", "MIN-CHI", "HOU-CLE", "PHI-GB", "SEA-KC", "DEN-STL", "CIN-NO", "SF-NYG", "TB-WAS", "ATL-CAR", "OAK-SD", "DET-ARI", "NE-IND", "PIT-TEN"],
         ["KC-OAK", "CLE-ATL", "NYJ-BUF", "TB-CHI", "JAC-IND", "GB-MIN", "DET-NE", "TEN-PHI", "CIN-HOU", "STL-SD", "ARI-SEA", "MIA-DEN", "WAS-SF", "DAL-NYG", "BAL-NO"],
-        ["CHI-DET", "PHI-DAL", "SEA-SF", "CLE-BUF", "WAS-IND", "OAK-STL", "CAR-MIN", "NO-PIT", "CIN-TB", "NYG-JAC", "SD-BAL", "TEN-HOU", "NE-GB", "DEN-KC", "MIA-NYJ"],
+        ["CHI-DET", "PHI-DAL", "SEA-SF", "CLE-BUF", "WAS-IND", "OAK-STL", "CAR-MIN", "NO-PIT", "CIN-TB", "NYG-JAC", "SD-BAL", "TEN-HOU", "NE-GB","ATL-ARI", "DEN-KC", "MIA-NYJ"],
         ["DAL-CHI","PIT-CIN", "IND-CLE", "TB-DET", "NYG-TEN", "BAL-MIA", "NYJ-MIN", "CAR-NO", "STL-WAS", "HOU-JAC", "BUF-DEN", "KC-ARI", "SF-OAK", "SEA-PHI", "NE-SD", "ATL-GB"],
         ["ARI-STL","PIT-ATL", "GB-BUF", "CIN-CLE", "MIN-DET", "HOU-IND", "OAK-KC", "MIA-NE", "WAS-NYG", "TB-CAR", "JAC-BAL", "NYJ-TEN", "DEN-SD", "SF-SEA", "DAL-PHI", "NO-CHI"],
-
         ["TEN-JAC","SD-SF", "PHI-WAS", "DET-CHI", "MIN-MIA", "ATL-NO", "NE-NYJ", "KC-PIT", "GB-TB", "CLE-CAR", "BAL-HOU", "NYG-STL", "IND-DAL", "BUF-OAK", "SEA-ARI", "DEN-CIN"],
-        ["DET-GB", "IND-TEN", "SD-KC", "NYJ-MIA", "CHI-MIN", "BUF-NE", "PHI-NYG", "CIN-PIT", "NO-TB", "DAL-WAS", "CLE-BAL", "JAC-HOU", "OAK-DEN", "ARI-SF", "STL-SEA"]
-    ], team_week_lists = {}, game_list = [], game_list_len = 256,
-    day_codes = "  T  M    N M            TM N      N      T M         MN   T T            NMT            NMT            NMT            NMT          NMT          NMT           NMT            NMTTT          NMT             NMT             NMTZZ           NM                ",
-    day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
+        ["CAR-ATL","DET-GB", "IND-TEN", "SD-KC", "NYJ-MIA", "CHI-MIN", "BUF-NE", "PHI-NYG", "CIN-PIT", "NO-TB", "DAL-WAS", "CLE-BAL", "JAC-HOU", "OAK-DEN", "ARI-SF", "STL-SEA"]
+    ],
+    team_week_lists = {},
+    game_list = [],
+    game_list_len = 256,
+    day_codes =
+      "T            NMM" //01
+    + "T             NM" //02
+    + "T             NM" //03
+    + "T          NM"    //04
+    + "T            NM"  //05
+    + "T            NM"  //06
+    + "T            NM"  //07
+    + "T            NM"  //08
+    + "T          NM"    //09
+    + "T          NM"    //10
+    + "T           NM"   //11
+    + "T            NM"  //12
+    + "TTT           NM" //13
+    + "T             NM" //14
+    + "T             NM" //15
+    + "TZZ            M" //16
+    + "                " //17
+    ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
         4: "ARI CIN CLE DEN SEA STL",
         5: "MIA OAK",
@@ -463,6 +517,7 @@ function set_all_rankings() {
         a = [],
         c = {},
         b;
+    console.log(unpicked_games_count);
     if (unpicked_games_count > 20) {
         b = "You have many unpicked games. "
     }
