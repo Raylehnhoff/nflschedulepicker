@@ -3,6 +3,13 @@
 <head>
     <title></title>
     <style type="text/css">
+        #container{
+            width:960px;
+            margin:0 auto;
+        }
+        body{
+            margin:0;
+        }
         .button_up {
             padding: 2px;
             border: 1px outset;
@@ -516,7 +523,7 @@
 <body>
     <div id="container">
         <div id="header" class="header_warning">
-            <h3 style="margin-bottom: 0;">NFL Predictor. Version 0.02. Features added as I write them.
+            <h3 style="margin: 0 auto;">NFL Predictor, originally by Clinton Morell
                 <input type="button" class="up" id="help-button" value="Help" onclick="show_help()" />
                 <input type="button" class="button_up" id="reset-button" value="Reset all games" onclick="    reset_button()" />
             </h3>
@@ -687,9 +694,8 @@
             </table>
         </div>
         <div style="float: left">&nbsp;&nbsp;</div>
-        <div id="autogen_tab" style="float: left; padding: 16px"></div>
+        <div id="autogen_tab" style="float: left; padding: 25px"></div>
         <div style="float: left" id="help-tab">
-            <h2>Version 0.02 </h2>
             <h3>How to use: <em>mostly just click stuff...</em></h3>
             <ul>
                 <li>Click on numbered buttons at the top to change weeks.</li>
@@ -894,7 +900,7 @@
         </div>
         <div id="footer" class="header_warning" style="clear: both; text-align: center;">
             All team logos are belong to their respective teams. See <a href="http://nfl.com/">nfl.com</a> for details on that.<br>
-            Javascript code copyright © 2013 Clinton Morell
+            Javascript code copyright © 2014 Clinton Morell, Raymond Lehnhoff
         </div>
     </div>
     <script type="text/javascript" src="jquery.js"></script>

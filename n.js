@@ -517,7 +517,6 @@ function set_all_rankings() {
         a = [],
         c = {},
         b;
-    console.log(unpicked_games_count);
     if (unpicked_games_count > 20) {
         b = "You have many unpicked games. "
     }
@@ -603,6 +602,7 @@ function sort_div(c, a) {
 }
 
 function conf_ranker(c) {
+    if (unpicked_games_count === 256) return;
     var e = c.slice(0),
         b,
         d,
