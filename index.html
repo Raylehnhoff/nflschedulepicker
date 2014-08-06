@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <link href="prettify.css" type="text/css" rel="stylesheet" />
     <style type="text/css">
         #container{
             width:960px;
@@ -895,8 +896,8 @@
         <div class="save_footer" id="save_footer" style="clear: both;">
             <span id="unpicked-warning" class="unpicked-warning"></span>URL save link is:<br>
             <span style="font-size: 0.6em; font-weight: normal;" id="save_string"></span>
-            <p>Want to export this to Markdown for reddit? <a href="#" onclick="markdownExport()">Click Here!</a></p>
-            <pre><code id="markdownField"></code></pre>
+            <h2>Reddit Markdown Export</h2>
+            <pre class="prettyprint" style="font-size:8px;"><code id="markdownField"></code></pre>
         </div>
         <div id="footer" class="header_warning" style="clear: both; text-align: center;">
             All team logos are belong to their respective teams. See <a href="http://nfl.com/">nfl.com</a> for details on that.<br>
@@ -904,6 +905,7 @@
         </div>
     </div>
     <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="prettify.js"></script>
     <script type="text/javascript" src="n.js"></script>
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -915,6 +917,11 @@
 
         ga('create', 'UA-50019712-2', 'raylehnhoff.github.io');
         ga('send', 'pageview');
+
+        $(document).ready(function () {
+            markdownExport();
+            prettyPrint();
+        });
 
 </script>
 </body>
