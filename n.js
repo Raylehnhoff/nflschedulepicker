@@ -29,6 +29,7 @@ function getCookie(b) {
         }
     }
 }
+var conferenceRankingObject = {};
 var games_cookie_name = "NFL2014",
     cookie_letter_length = 86,
     cookie64_re = /-[A-Za-z0-9\-_]{86}_?/,
@@ -540,7 +541,7 @@ function set_all_rankings() {
             div_ranker("NN", NFC_table, a, c),
             div_ranker("NS", NFC_table, a, c),
             div_ranker("NW", NFC_table, a, c)
-        ]
+        ], 'NFC'
     );
 
     conf_ranker(
@@ -549,13 +550,15 @@ function set_all_rankings() {
             div_ranker("AN", AFC_table, d, c),
             div_ranker("AS", AFC_table, d, c),
             div_ranker("AW", AFC_table, d, c)
-        ]);
+        ], 'AFC');
 
-    wild_ranker(d, c);
-    wild_ranker(a, c)
+    wild_ranker(d, c, 'AFC');
+    wild_ranker(a, c, 'NFC');
 }
 
-function wild_ranker(c, b) {
+function wild_ranker(c, b, confName) {
+    console.log(c);
+    console.log(confName);
     var e = c.slice(0),
         a,
         d;
@@ -563,7 +566,9 @@ function wild_ranker(c, b) {
     a = conf_pick_top(e);
     document.getElementById(a + "-conf-rank").innerHTML = 5;
     e.splice(e.indexOf(a), 1); e.push(b[a]); d = conf_pick_top(e);
-    document.getElementById(d + "-conf-rank").innerHTML = 6
+    document.getElementById(d + "-conf-rank").innerHTML = 6;
+    conferenceRankingObject[confName].placements[5] = { name: a, record: all_record[a] };
+    conferenceRankingObject[confName].placements[6] = { name: d, record: all_record[d] };
 }
 
 function exchange(d, c, b) {
@@ -601,7 +606,7 @@ function sort_div(c, a) {
     exchange(b + 1, b + 2, a)
 }
 
-function conf_ranker(c) {
+function conf_ranker(c, confName) {
     if (unpicked_games_count === 256) return;
     var e = c.slice(0),
         b,
@@ -616,7 +621,17 @@ function conf_ranker(c) {
     e.splice(e.indexOf(d), 1); a = conf_pick_top(e);
     document.getElementById(a + "-conf-rank").innerHTML = 3;
     e.splice(e.indexOf(a), 1);
-    document.getElementById(e[0] + "-conf-rank").innerHTML = 4
+    document.getElementById(e[0] + "-conf-rank").innerHTML = 4;
+    if (confName) {
+        conferenceRankingObject[confName] = {
+            name: confName,
+            placements: {}
+        };
+        conferenceRankingObject[confName].placements[1] = { name: b, record: all_record[b] };
+        conferenceRankingObject[confName].placements[2] = { name: d, record: all_record[d] };
+        conferenceRankingObject[confName].placements[3] = { name: a, record: all_record[a] };
+        conferenceRankingObject[confName].placements[4] = { name: e[0], record: all_record[e[0]] }
+    }
 }
 
 function div_ranker(b, d, c, f) {
@@ -1150,3 +1165,27 @@ function modify_game(e, d, b, c, a) { unpicked_games_count -= (c + a); if (a == 
         }
     }
 };
+
+function markdownExport() {
+    var sb = [];
+    for (var conference in conferenceRankingObject) {
+        var conferenceName = conferenceRankingObject[conference].name;
+        //1-6
+        sb.push("\n\n#" + conferenceName+"\n\n");
+        sb.push("Rank | Team | W | L | T\n");
+        sb.push("-|-|-:|-:|-:|\n");
+
+        for (var placement in conferenceRankingObject[conference].placements) {
+            /* AFC
+             *  1   |   KC  |  8 |  8   |   0   |
+             */
+            var team = conferenceRankingObject[conference].placements[placement];
+            sb.push(placement + "|"
+                + team.name + "|"
+                + team.record[0] + "|"
+                + team.record[1] + "|"
+                + team.record[2] + "|\n");
+        }
+    }
+    $("#markdownField").html(sb.join(''));
+}
