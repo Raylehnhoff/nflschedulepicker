@@ -921,6 +921,12 @@
         $(document).ready(function () {
             markdownExport();
             prettyPrint();
+            if (window.location.hash) {
+                var team = window.location.hash.substring(1);
+                if (NFL_teams.indexOf(team) != -1) {
+                    show_team_tab(team);
+                }
+            }
         });
 
 </script>
