@@ -58,22 +58,22 @@ var games_cookie_name = "NFL2014",
     game_list = [],
     game_list_len = 256,
     day_codes =
-      "T            NMM" //01
-    + "T             NM" //02
-    + "T             NM" //03
-    + "T          NM"    //04
-    + "T            NM"  //05
-    + "T            NM"  //06
-    + "T            NM"  //07
-    + "T            NM"  //08
+      "T            NMM"  //01
+    + "T             NM"  //02
+    + "T             NM"  //03
+    + "TU           NM"    //04
+    + "T           NM"  //05
+    + "T           NM"  //06
+    + "TU          NM"  //07
+    + "TU          NM"  //08
     + "T          NM"    //09
-    + "T          NM"    //10
+    + "T           NM"    //10
     + "T           NM"   //11
-    + "T            NM"  //12
-    + "TTT           NM" //13
+    + "T             NM"  //12
+    + "T             NM" //13
     + "T             NM" //14
-    + "T             NM" //15
-    + "TZZ            M" //16
+    + "TZ            NM" //15
+    + "TZ            NM" //16
     + "                " //17
     ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
