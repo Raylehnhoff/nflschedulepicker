@@ -4,13 +4,15 @@
     <title></title>
     <link href="prettify.css" type="text/css" rel="stylesheet" />
     <style type="text/css">
-        #container{
-            width:960px;
-            margin:0 auto;
+        #container {
+            width: 960px;
+            margin: 0 auto;
         }
-        body{
-            margin:0;
+
+        body {
+            margin: 0;
         }
+
         .button_up {
             padding: 2px;
             border: 1px outset;
@@ -524,7 +526,8 @@
 <body>
     <div id="container">
         <div id="header" class="header_warning">
-            <h3 style="margin: 0 auto;">NFL Predictor, originally by Clinton Morell
+            <h3 style="margin: 0 auto;">
+                NFL Predictor, originally by Clinton Morell
                 <input type="button" class="up" id="help-button" value="Help" onclick="show_help()" />
                 <input type="button" class="button_up" id="reset-button" value="Reset all games" onclick="    reset_button()" />
             </h3>
@@ -699,52 +702,70 @@
             <h3>How to use: <em>mostly just click stuff...</em></h3>
             <ul>
                 <li>Click on numbered buttons at the top to change weeks.</li>
-                <li>Click on the name of a team in the standings to display that team's<br>
-                    schedule.</li>
-                <li>Click on the team you think will win.
+                <li>
+                    Click on the name of a team in the standings to display that team's<br>
+                    schedule.
+                </li>
+                <li>
+                    Click on the team you think will win.
                     <ul>
                         <li>Click the = on the middle for a tie.</li>
                         <li>Click again to undo your prediction.</li>
                     </ul>
-                    <li><strong>Copy the URL at near the bottom.</strong>
-                        <ul>
-                            <li>It has all 256 of your predictions.</li>
-                            <li>Post it on Reddit.</li>
-                            <li>Tweet it.</li>
-                        </ul>
-                    </li>
-                    <li>Standings updated automatically.</li>
-                    <li>NFL tie-breakers implemented all the way to <em>Strength of Schedule</em>.
-                        <br>
-                        This should cover 99%+ of realistic scenarioes.</li>
-                    <li>Prime Time games are labeled:
-                        <ul>
-                            <li><strong>T</strong>: Thursday/Thanksgiving game</li>
-                            <li><strong>Z</strong>: Saturday Night game</li>
-                            <li><strong>N</strong>: Sunday Night game (may be flexed out)</li>
-                            <li><strong>M</strong>: Monday Night game</li>
-                            <li><strong>U</strong>: game @ London, UK</li>
-                            <li><strong>C</strong>: game @ Toronto, Canada</li>
-                        </ul>
-                    </li>
+                <li>
+                    <strong>Copy the URL at near the bottom.</strong>
+                    <ul>
+                        <li>It has all 256 of your predictions.</li>
+                        <li>Post it on Reddit.</li>
+                        <li>Tweet it.</li>
+                    </ul>
+                </li>
+                <li>Standings updated automatically.</li>
+                <li>
+                    NFL tie-breakers implemented all the way to <em>Strength of Schedule</em>.
+                    <br>
+                    This should cover 99%+ of realistic scenarioes.
+                </li>
+                <li>
+                    Prime Time games are labeled:
+                    <ul>
+                        <li><strong>T</strong>: Thursday/Thanksgiving game</li>
+                        <li><strong>Z</strong>: Saturday Night game</li>
+                        <li><strong>N</strong>: Sunday Night game (may be flexed out)</li>
+                        <li><strong>M</strong>: Monday Night game</li>
+                        <li><strong>U</strong>: game @ London, UK</li>
+                        <li><strong>C</strong>: game @ Toronto, Canada</li>
+                    </ul>
+                </li>
             </ul>
             <h3>Known issues and quirks:</h3>
             <ul>
-                <li>NY Giants logo not up to par. Needs new transparent version that<br>
-                    looks good on both white and NY Giants blue backgrounds</li>
-                <li>Tiebreakers behave oddly when very few games picked.<br>
+                <li>
+                    NY Giants logo not up to par. Needs new transparent version that<br>
+                    looks good on both white and NY Giants blue backgrounds
+                </li>
+                <li>
+                    Tiebreakers behave oddly when very few games picked.<br>
                     <ul>
                         <li>This is due to ties being broken by Strength of Schedule.</li>
                         <li>Pick more games and the tiebreakers will settle down.</li>
                     </ul>
                 </li>
-                <li>Point based tiebreakers NOT implemented.<br>
-                    <em style="font-size: 0.8em">Don't panic--tying division records AND conference records AND Strength of Schedule<br>
-                        AND Strength of Victory is nearly impossible.</em></li>
-                <li>Coin-flip tiebreaker actually "which abbreviation comes first<br>
-                    alphabetically".</li>
-                <li>Data automatically saved in cookie--sometimes too automatically.<br>
-                    Could use UI improvement.</li>
+                <li>
+                    Point based tiebreakers NOT implemented.<br>
+                    <em style="font-size: 0.8em">
+                        Don't panic--tying division records AND conference records AND Strength of Schedule<br>
+                        AND Strength of Victory is nearly impossible.
+                    </em>
+                </li>
+                <li>
+                    Coin-flip tiebreaker actually "which abbreviation comes first<br>
+                    alphabetically".
+                </li>
+                <li>
+                    Data automatically saved in cookie--sometimes too automatically.<br>
+                    Could use UI improvement.
+                </li>
             </ul>
         </div>
         <div style="float: left">
@@ -929,6 +950,25 @@
             }
         });
 
-</script>
+        function findFoes(search) {
+            var output = [];
+            for (var i = 0; i < week_lists.length; i++) {
+                var elem = week_lists[i];
+                var team = elem.filter(function(elem2, ind2) {
+                    return elem2.indexOf(search) != -1;
+                })[0];
+                if (team) {
+                    var x = team.indexOf(search);
+                    if (x > 0) {
+                        output.push(team.substring(0, x - 1));
+                    } else {
+                        output.push(team.substring(x + search.length+1));
+                    }
+                }
+            }
+            console.log(search+': [\''+output.join('\',\'')+ '\']');
+        }
+
+    </script>
 </body>
 </html>
