@@ -519,8 +519,8 @@ function set_all_rankings() {
         a = [],
         c = {},
         b;
-    if (unpicked_games_count > 20) {
-        b = "You have many unpicked games. "
+    if (unpicked_games_count > 255) {
+        b = "You haven't picked any games. "
     }
     else {
         if (unpicked_games_count > 1) {
