@@ -18,7 +18,7 @@ function set_game_cookie(c, a) {
     } set_visible_cookie(b)
 }
 function set_visible_cookie(a) {
-    document.getElementById("save_string").innerHTML = "http://raylehnhoff.github.io/nflschedulepicker/?a=" + a
+    document.getElementById("save_string").innerHTML = "http://chibears85.github.io/nflschedulepicker/?a=" + a
 }
 function getCookie(b) {
     var c, a, e, d = document.cookie.split(";");
