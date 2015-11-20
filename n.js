@@ -18,7 +18,7 @@ function set_game_cookie(c, a) {
     } set_visible_cookie(b)
 }
 function set_visible_cookie(a) {
-    document.getElementById("save_string").innerHTML = "http://chibears85.github.io/nflschedulepicker/?a=" + a
+    document.getElementById("save_string").innerHTML = "http://0003mg.github.io/nflschedulepicker/?a=" + a
 }
 function getCookie(b) {
     var c, a, e, d = document.cookie.split(";");
@@ -36,7 +36,7 @@ var games_cookie_name = "NFL2014",
     cookie_letter_length = 86,
     cookie64_re = /-[A-Za-z0-9\-_]{86}_?/,
     base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
-    number_of_weeks = 17,
+    number_of_weeks = 21,
     week_lists = [
         /*1*/["PIT-NE", "GB-CHI", "KC-HOU", "CLE-NYJ", "IND-BUF", "MIA-WAS", "CAR-JAC", "SEA-STL", "NO-ARI", "DET-SD", "TEN-TB", "CIN-OAK", "BAL-DEN", "NYG-DAL", "PHI-ATL", "MIN-SF"],
         /*2*/["DEN-KC", "HOU-CAR", "SF-PIT", "TB-NO", "DET-MIN", "ARI-CHI", "NE-BUF", "SD-CIN", "TEN-CLE", "ATL-NYG", "STL-WAS", "MIA-JAC", "BAL-OAK", "DAL-PHI", "SEA-GB", "NYJ-IND"],
@@ -54,11 +54,15 @@ var games_cookie_name = "NFL2014",
         /*14*/['MIN-ARI', 'BUF-PHI', 'SF-CLE', 'DET-STL', 'NO-TB', 'TEN-NYJ', 'PIT-CIN', 'NE-HOU', 'IND-JAC', 'SD-KC', 'WAS-CHI', 'ATL-CAR', 'OAK-DEN', 'DAL-GB', 'SEA-BAL', 'NYG-MIA'],
         /*15*/['TB-STL', 'NYJ-DAL', 'CHI-MIN', 'ATL-JAC', 'HOU-IND', 'ARI-PHI', 'CAR-NYG', 'TEN-NE', 'BUF-WAS', 'KC-BAL', 'CLE-SEA', 'GB-OAK', 'DEN-PIT', 'MIA-SD', 'CIN-SF', 'DET-NO'],
         /*16*/['SD-OAK', 'WAS-PHI', 'NE-NYJ', 'HOU-TEN', 'CLE-KC', 'IND-MIA', 'JAC-NO', 'SF-DET', 'DAL-BUF', 'CHI-TB', 'CAR-ATL', 'NYG-MIN', 'STL-SEA', 'GB-ARI', 'PIT-BAL', 'CIN-DEN'],
-        /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'OAK-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'SD-DEN', 'SEA-ARI', 'STL-SF']
+        /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'OAK-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'SD-DEN', 'SEA-ARI', 'STL-SF'],
+		/*WC*/[],
+		/*DR*/[],
+		/*CC*/[],
+		/*SB*/[]
     ],
     team_week_lists = {},
     game_list = [],
-    game_list_len = 256,
+    game_list_len = 267,
     day_codes =
       "T            NMM"  //01
     + "T             NM"  //02
@@ -77,6 +81,10 @@ var games_cookie_name = "NFL2014",
     + "TZ            NM" //15
     + "TZ            NM" //16
     + "                " //17
+	+ "    " //WC
+	+ "    " //DR
+	+ "  " //CC
+	+ " " //SB
     ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
         4: "NE TEN",
@@ -231,6 +239,10 @@ var games_cookie_name = "NFL2014",
         "week-15",
         "week-16",
         "week-17",
+		"week-18",
+		"week-19",
+		"week-20",
+		"week-21",
         "help",
         "BUF",
         "MIA",
@@ -512,6 +524,7 @@ function wgc(b, a) {
     change_game(b, a);
     set_game_cookie(cookie_letters);
     set_all_rankings();
+	edit_playoffs();
 }
 
 function set_all_rankings() {
@@ -555,6 +568,8 @@ function set_all_rankings() {
 
     wild_ranker(d, c, 'AFC');
     wild_ranker(a, c, 'NFC');
+	
+	edit_playoffs();
 }
 
 function wild_ranker(c, b, confName) {
@@ -563,11 +578,72 @@ function wild_ranker(c, b, confName) {
         d;
 
     a = conf_pick_top(e);
-    document.getElementById(a + "-conf-rank").innerHTML = 5;
+    document.getElementById(a + "-conf-rank").innerHTML = '<font color="green"><b>5</b></font>';
     e.splice(e.indexOf(a), 1); e.push(b[a]); d = conf_pick_top(e);
-    document.getElementById(d + "-conf-rank").innerHTML = 6;
+    document.getElementById(d + "-conf-rank").innerHTML = '<font color="green"><b>6</b></font>';
     conferenceRankingObject[confName].placements[5] = { name: a, record: all_record[a] };
     conferenceRankingObject[confName].placements[6] = { name: d, record: all_record[d] };
+	
+	//Non-Playoff Teams
+	e.splice(e.indexOf(d), 1); e.push(b[d]);
+	var seventhPlace = conf_pick_top(e);
+	document.getElementById(seventhPlace + "-conf-rank").innerHTML = '<font color="red">7</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(seventhPlace), 1); e.push(b[seventhPlace]);
+	var eighthPlace = conf_pick_top(e);
+	document.getElementById(eighthPlace + "-conf-rank").innerHTML = '<font color="red">8</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(eighthPlace), 1); e.push(b[eighthPlace]);
+	var ninthPlace = conf_pick_top(e);
+	document.getElementById(ninthPlace + "-conf-rank").innerHTML = '<font color="red">9</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(ninthPlace), 1); e.push(b[ninthPlace]);
+	var tenthPlace = conf_pick_top(e);
+	document.getElementById(tenthPlace + "-conf-rank").innerHTML = '<font color="red">10</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(tenthPlace), 1); e.push(b[tenthPlace]);
+	var eleventhPlace = conf_pick_top(e);
+	document.getElementById(eleventhPlace + "-conf-rank").innerHTML = '<font color="red">11</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(eleventhPlace), 1); e.push(b[eleventhPlace]);
+	var twelthPlace = conf_pick_top(e);
+	document.getElementById(twelthPlace + "-conf-rank").innerHTML = '<font color="red">12</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(twelthPlace), 1); e.push(b[twelthPlace]);
+	var thirteenthPlace = conf_pick_top(e);
+	document.getElementById(thirteenthPlace + "-conf-rank").innerHTML = '<font color="red">13</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(thirteenthPlace), 1); e.push(b[thirteenthPlace]);
+	var fourteenthPlace = conf_pick_top(e);
+	document.getElementById(fourteenthPlace + "-conf-rank").innerHTML = '<font color="red">14</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(fourteenthPlace), 1); e.push(b[fourteenthPlace]);
+	var fifthteenthPlace = conf_pick_top(e);
+	document.getElementById(fifthteenthPlace + "-conf-rank").innerHTML = '<font color="red">15</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(fifthteenthPlace), 1); e.push(b[fifthteenthPlace]);
+	var sixteenthPlace = conf_pick_top(e);
+	document.getElementById(sixteenthPlace + "-conf-rank").innerHTML = '<font color="red">16</font>';
+}
+
+function cleanArray(e) {
+	
+	for (var i = 0; i < e.length; i++) {
+		if (e[i] == undefined) {         
+			e.splice(i, 1);
+		i--;
+		}
+	}
+	return e;
 }
 
 function exchange(d, c, b) {
@@ -613,14 +689,14 @@ function conf_ranker(c, confName) {
         a;
 
     b = conf_pick_top(e);
-    document.getElementById(b + "-conf-rank").innerHTML = 1;
+    document.getElementById(b + "-conf-rank").innerHTML = '<font color="green"><b>1</b></font>';
     e.splice(e.indexOf(b), 1);
     d = conf_pick_top(e);
-    document.getElementById(d + "-conf-rank").innerHTML = 2;
+    document.getElementById(d + "-conf-rank").innerHTML = '<font color="green"><b>2</b></font>';
     e.splice(e.indexOf(d), 1); a = conf_pick_top(e);
-    document.getElementById(a + "-conf-rank").innerHTML = 3;
+    document.getElementById(a + "-conf-rank").innerHTML = '<font color="green"><b>3</b></font>';
     e.splice(e.indexOf(a), 1);
-    document.getElementById(e[0] + "-conf-rank").innerHTML = 4;
+    document.getElementById(e[0] + "-conf-rank").innerHTML = '<font color="green"><b>4</b></font>';
     if (confName) {
         conferenceRankingObject[confName] = {
             name: confName,
@@ -637,7 +713,8 @@ function div_ranker(b, d, c, f) {
     var h = division_teams[b].slice(0),
         e,
         g,
-        a;
+        a,
+		l;
 
     e = division_pick_top(h);
     document.getElementById(e + "-div-rank").innerHTML = 1;
@@ -653,6 +730,7 @@ function div_ranker(b, d, c, f) {
     h.splice(h.indexOf(a), 1); f[g] = a;
     document.getElementById(h[0] + "-div-rank").innerHTML = 4;
     document.getElementById(h[0] + "-conf-rank").innerHTML = "";
+	f[a] = h[0];
     sort_div(b, d);
     return e
 }
@@ -1098,7 +1176,8 @@ function week_game_table(g, b) {
             case "M":
                 k += e;
                 break;
-            default: alert("OUCH " + i);
+            //default: alert("OUCH " + i);
+			default: a += e;
                 break
         }
     }
@@ -1201,4 +1280,37 @@ function markdownExport() {
     }
     sb.push("[Generated by the NFL Playoff Predictor](" + url + ")");
     $("#markdownField").html(sb.join(''));
+}
+
+function update_outcomes() {
+	
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_all_rankings();
+    set_game_cookie(cookie_letters, true);
+}
+
+function edit_playoffs() {
+	
+	//Wild Card
+	var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
+	var afcWildCard2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[3].name;
+	var nfcWildCard1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[4].name;
+	var nfcWildCard2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[3].name;
+	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
+	
+	//Divisional
+	var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	var afcDivisional2 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+	var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	var nfcDivisional2 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+	week_lists[18] = [afcDivisional1, afcDivisional2, nfcDivisional1, nfcDivisional2];
+	
+	//Conference Championships
+	var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	week_lists[19] = [afcChampionship, nfcChampionship];
+	
+	//Super Bowl
+	var superBowl = conferenceRankingObject['NFC'].placements[1].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	week_lists[20] = [superBowl];
 }
