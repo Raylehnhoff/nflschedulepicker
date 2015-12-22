@@ -1,4 +1,4 @@
-﻿var isRNFLMarkdown = false;
+var isRNFLMarkdown = false;
 
 function getParam(a) {
     var d = location.search.substr(location.search.indexOf("?") + 1),
@@ -18,7 +18,7 @@ function set_game_cookie(c, a) {
     } set_visible_cookie(b)
 }
 function set_visible_cookie(a) {
-    document.getElementById("save_string").innerHTML = "http://Chibears85.github.io/nflschedulepicker/?a=" + a
+    document.getElementById("save_string").innerHTML = "http://0003mg.github.io/nflschedulepicker/?a=" + a
 }
 function getCookie(b) {
     var c, a, e, d = document.cookie.split(";");
@@ -63,29 +63,30 @@ var games_cookie_name = "NFL2014",
     team_week_lists = {},
     game_list = [],
     game_list_len = 267,
-    day_codes =
-      "T            NMM"  //01
-    + "T             NM"  //02
-    + "T             NM"  //03
-    + "TU           NM"    //04
-    + "T           NM"  //05
-    + "T           NM"  //06
-    + "TU          NM"  //07
-    + "TU          NM"  //08
-    + "T          NM"    //09
-    + "T           NM"    //10
-    + "T           NM"   //11
-    + "TTT           NM"  //12
-    + "T             NM" //13
-    + "T             NM" //14
-    + "TZ            NM" //15
-    + "TZ            NM" //16
-    + "                " //17
-	+ "    " //WC
+	playoff_day_codes = 
+	  "    " //WC
 	+ "    " //DR
 	+ "  " //CC
 	+ "N" //SB
-    ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
+    ,day_codes =
+      "T            NMM"  //01
+    + "T             NM"  //02
+    + "T             NM"  //03
+    + "TI           NM"    //04
+    + "T           NM"  //05
+    + "T           NM"  //06
+    + "TI          NM"  //07
+    + "TI          NM"  //08
+    + "T          NM"    //09
+    + "T           NM"    //10
+    + "T         N  M"   //11
+    + "TTT           NM"  //12
+    + "T             NM" //13
+    + "T      N       M" //14
+    + "TZ            NM" //15
+    + "TZ            NM" //16
+    + "                " //17
+    ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", I: "International game", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
         4: "NE TEN",
         5: "CAR MIA MIN NYJ",
@@ -244,6 +245,7 @@ var games_cookie_name = "NFL2014",
 		"week-20",
 		"week-21",
         "help",
+		"tie-explain",
         "BUF",
         "MIA",
         "NE",
@@ -349,7 +351,8 @@ var games_cookie_name = "NFL2014",
 	net_points_all = {},
 	num_touchdowns = {},
     ii,
-    jj;
+    jj,
+	tie_explain = [];
 my_init_func();
 function my_init_func() {
     var g = getCookie(games_cookie_name), b = getParam("a"), e, f, a, d, c, h; for (e = NFL_teams_len; e--;) {
@@ -423,6 +426,8 @@ function clear_data() {
         cookie_bits[c] = 0;
         cookie_letters[c] = "A"
     }
+	
+	edit_playoffs();
 }
 
 function set_games_from_string(b) {
@@ -541,6 +546,7 @@ function change_game(c, b) {
 
 function wgc(b, a) {
 	
+	tie_explain = [];
 	if((active_tab != 'week-18') && (active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
 		if (a == game_states[b]) {
 			a = NO_GAME
@@ -776,7 +782,6 @@ function conf_tiebreaker(b) {
 	
 	//Head to Head
     c = hth_conf(b);
-
     switch (c.length) {
         case 1:
             return c[0];
@@ -1238,7 +1243,7 @@ function week_game_table(g, b) {
 		if((active_tab != 'week-18') && (active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
 			o = day_codes[game_position[i]];
 		} else {
-			o = day_codes[playoff_game_position[i]];
+			o = playoff_day_codes[playoff_game_position[i]];
 		}
 		
         switch (o) {
@@ -1246,7 +1251,7 @@ function week_game_table(g, b) {
                 j += e;
                 break;
             case " ":
-            case "U":
+            case "I":
             case "C":
             case "Z":
                 a += e;
@@ -1280,7 +1285,7 @@ function game_buttons(i, a) {
         d = day_codes[game_position[i]];
 		
 		if((active_tab == 'week-18') || (active_tab == 'week-19') || (active_tab == 'week-20') || (active_tab == 'week-21')) {
-			d = day_codes[playoff_game_position[i]];
+			d = " ";
 		}
 		
         h = day_explaination[d];
@@ -1513,10 +1518,33 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmGAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
+	show_week_tab("week-16");
+}
+
+
+function explain_ties() {
+	
+	if(active_tab != 'help-tab' && active_tab != undefined) {
+		
+		var a = document.getElementById("autogen_tab");
+		set_tabbing_buttons("tie-explain");
+		a.innerHTML = '<h3>Tiebreaking explainations is still a work in progress</h3>'
+		/*
+		var i;
+		
+		a.innerHTML = '<ul>'
+		
+		for(i = 0; i < tie_explain.length; i++) {
+			
+			a.innerHTML += '<li>' + tie_explain[i] + '</li>';
+		}
+		a.innerHTML += '</ul>'
+		*/
+	}
 }
 
 function edit_playoffs() {
@@ -1610,20 +1638,114 @@ function edit_playoffs() {
 		playoff_game_states[nfcDivisional2] = 0;
 	}
 	
-	/*
 	//Conference Championships
-	var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 2) {
+		
+		var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	
+	} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 2) {
+		
+		var splitter = afcDivisional1.split("-");
+		var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[1].name;
+		
+	} else if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 1) {
+		
+		var splitter = afcDivisional2.split("-");
+		var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[2].name;
+		
+	} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 1) {
+		
+		var splitter1 = afcDivisional1.split("-");
+		var splitter2 = afcDivisional2.split("-");
+		var afcChampionship = splitter2[0] + '-' + splitter1[0];
+		
+	} else {
+		
+		var afcChampionship = 'NA-NA';
+	}
+	if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 2) {
+		
+		var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	
+	} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 2) {
+		
+		var splitter = nfcDivisional1.split("-");
+		var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[1].name;
+		
+	} else if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 1) {
+		
+		var splitter = nfcDivisional2.split("-");
+		var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[2].name;
+		
+	} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 1) {
+		
+		var splitter1 = nfcDivisional1.split("-");
+		var splitter2 = nfcDivisional2.split("-");
+		var nfcChampionship = splitter2[0] + '-' + splitter1[0];
+		
+	} else {
+		
+		var nfcChampionship = 'NA-NA';
+	}
+	
+	if(afcChampionship != 'NA-NA' && nfcChampionship != 'NA-NA') {
 	week_lists[19] = [afcChampionship, nfcChampionship];
-	game_position[afcChampionship] = 8;
-	game_position[nfcChampionship] = 9;
-	game_states[afcChampionship] = 0;
-	game_states[nfcChampionship] = 0;
+	} else {
+		week_lists[19] = [];
+	}
+	
+	playoff_game_position[afcChampionship] = 8;
+	playoff_game_position[nfcChampionship] = 9;
+	
+	if((active_tab != 'week-20') && (active_tab != 'week-21')) {
+		playoff_game_states[afcChampionship] = 0;
+		playoff_game_states[nfcChampionship] = 0;
+	}
 	
 	//Super Bowl
-	var superBowl = conferenceRankingObject['NFC'].placements[1].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	week_lists[20] = [superBowl];
-	game_position[superBowl] = 10;
-	game_states[superBowl] = 0;
-	*/
+	if(playoff_game_states[afcChampionship] == 1) {
+		
+		var splitter3 = afcChampionship.split("-");
+		var afcChampion = splitter3[0];
+	
+	} else if(playoff_game_states[afcChampionship] == 2) {
+		
+		var splitter3 = afcChampionship.split("-");
+		var afcChampion = splitter3[1];
+		
+	} else {
+		
+		var afcChampion = 'NA';
+	}
+	if(playoff_game_states[nfcChampionship] == 1) {
+		
+		var splitter4 = nfcChampionship.split("-");
+		var nfcChampion = splitter4[0];
+	
+	} else if(playoff_game_states[nfcChampionship] == 2) {
+		
+		var splitter4 = nfcChampionship.split("-");
+		var nfcChampion = splitter4[1];
+		
+	} else {
+		
+		var nfcChampion = 'NA';
+	}
+	var superBowl = nfcChampion + '-' + afcChampion;
+	
+	if(superBowl != 'NA-NA') {
+		
+		week_lists[20] = [superBowl];
+	
+	} else {
+		
+		week_lists[20] = [];
+	}
+	
+	playoff_game_position[superBowl] = 10;
+	
+	if(active_tab != 'week-21') {
+		
+		playoff_game_states[superBowl] = 0;
+	}
 }
