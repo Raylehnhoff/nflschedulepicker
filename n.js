@@ -1525,6 +1525,16 @@ function update_outcomes() {
 	show_week_tab("week-16");
 }
 
+function update_outcomes2() {
+	
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpllWqpWlaqpqB_');
+	set_all_rankings();
+    set_game_cookie(cookie_letters, true);
+	edit_playoffs();
+	show_week_tab("week-17");
+}
+
+
 
 function explain_ties() {
 	
