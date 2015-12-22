@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
@@ -663,36 +663,39 @@
 <body>
     <div id="container">
         <div id="header" class="header_warning">
+			<center>
             <h3 style="margin: 0 auto;">
-                NFL Predictor, modified by Eric Murphy 
-                <input type="button" class="up" id="help-button" value="Help" onclick="show_help()" />
-                <input type="button" class="button_up" id="reset-button" value="Reset all games" onclick="    reset_button()" />
-				<input type="button" class="up" id="update-button" value="Update Outcomes" onclick="update_outcomes()" />
-				
+                NFL Predictor V2
             </h3>
-            Go to week:
-            <input type="button" class="up" id="week-1-button" value="1" onclick="    show_week_tab('week-1')" />
-            <input type="button" class="up" id="week-2-button" value="2" onclick="    show_week_tab('week-2')" />
-            <input type="button" class="up" id="week-3-button" value="3" onclick="    show_week_tab('week-3')" />
-            <input type="button" class="up" id="week-4-button" value="4" onclick="    show_week_tab('week-4')" />
-            <input type="button" class="up" id="week-5-button" value="5" onclick="    show_week_tab('week-5')" />
-            <input type="button" class="up" id="week-6-button" value="6" onclick="    show_week_tab('week-6')" />
-            <input type="button" class="up" id="week-7-button" value="7" onclick="    show_week_tab('week-7')" />
-            <input type="button" class="up" id="week-8-button" value="8" onclick="    show_week_tab('week-8')" />
-            <input type="button" class="up" id="week-9-button" value="9" onclick="    show_week_tab('week-9')" />
-            <input type="button" class="up" id="week-10-button" value="10" onclick="    show_week_tab('week-10')" />
-            <input type="button" class="up" id="week-11-button" value="11" onclick="    show_week_tab('week-11')" />
-            <input type="button" class="up" id="week-12-button" value="12" onclick="    show_week_tab('week-12')" />
-            <input type="button" class="up" id="week-13-button" value="13" onclick="    show_week_tab('week-13')" />
-            <input type="button" class="up" id="week-14-button" value="14" onclick="    show_week_tab('week-14')" />
-            <input type="button" class="up" id="week-15-button" value="15" onclick="    show_week_tab('week-15')" />
-            <input type="button" class="up" id="week-16-button" value="16" onclick="    show_week_tab('week-16')" />
-            <input type="button" class="up" id="week-17-button" value="17" onclick="    show_week_tab('week-17')" />
-			<input type="button" class="up" id="week-18-button" value="WC" onclick="    show_week_tab('week-18')" />
-			<input type="button" class="up" id="week-19-button" value="DV" onclick="    show_week_tab('week-19')" />
-			<input type="button" class="up" id="week-20-button" value="CH" onclick="    show_week_tab('week-20')" />
-			<input type="button" class="up" id="week-21-button" value="SB" onclick="    show_week_tab('week-21')" />
+			<h3 style="margin: 0 auto;">
+				<input type="button" class="button_up" id="help-button" value="Help" onclick="show_help()" />
+                <input type="button" class="up" id="reset-button" value="Reset all games" onclick="reset_button()" />
+				<input type="button" class="button_up" id="tie-explain-button" value="Explain Tiebreakers" onclick="explain_ties()" />
+				<input type="button" class="up" id="update-button" value="Update Outcomes" onclick="update_outcomes()" />
+			</h3>
+            <input type="button" class="button_up" id="week-1-button" value="1" onclick="    show_week_tab('week-1')" />
+            <input type="button" class="button_up" id="week-2-button" value="2" onclick="    show_week_tab('week-2')" />
+            <input type="button" class="button_up" id="week-3-button" value="3" onclick="    show_week_tab('week-3')" />
+            <input type="button" class="button_up" id="week-4-button" value="4" onclick="    show_week_tab('week-4')" />
+            <input type="button" class="button_up" id="week-5-button" value="5" onclick="    show_week_tab('week-5')" />
+            <input type="button" class="button_up" id="week-6-button" value="6" onclick="    show_week_tab('week-6')" />
+            <input type="button" class="button_up" id="week-7-button" value="7" onclick="    show_week_tab('week-7')" />
+            <input type="button" class="button_up" id="week-8-button" value="8" onclick="    show_week_tab('week-8')" />
+            <input type="button" class="button_up" id="week-9-button" value="9" onclick="    show_week_tab('week-9')" />
+            <input type="button" class="button_up" id="week-10-button" value="10" onclick="    show_week_tab('week-10')" />
+            <input type="button" class="button_up" id="week-11-button" value="11" onclick="    show_week_tab('week-11')" />
+            <input type="button" class="button_up" id="week-12-button" value="12" onclick="    show_week_tab('week-12')" />
+            <input type="button" class="button_up" id="week-13-button" value="13" onclick="    show_week_tab('week-13')" />
+            <input type="button" class="button_up" id="week-14-button" value="14" onclick="    show_week_tab('week-14')" />
+            <input type="button" class="button_up" id="week-15-button" value="15" onclick="    show_week_tab('week-15')" />
+            <input type="button" class="button_up" id="week-16-button" value="16" onclick="    show_week_tab('week-16')" />
+            <input type="button" class="button_up" id="week-17-button" value="17" onclick="    show_week_tab('week-17')" />
+			<input type="button" class="button_up" id="week-18-button" value="WC" onclick="    show_week_tab('week-18')" />
+			<input type="button" class="button_up" id="week-19-button" value="DV" onclick="    show_week_tab('week-19')" />
+			<input type="button" class="button_up" id="week-20-button" value="CH" onclick="    show_week_tab('week-20')" />
+			<input type="button" class="button_up" id="week-21-button" value="SB" onclick="    show_week_tab('week-21')" />
             <br>
+			</center>
         </div>
         <div style="float: left">
             <table class="conf_table" id="AFC-table">
@@ -842,8 +845,7 @@
         </div>
         <div id="autogen_tab" style="float: left; padding: 4px"></div>
         <div style="float: left" id="help-tab">
-            <h3>How to use: <em>mostly just click stuff...</em></h3>
-			<h3><font color="red">NOTE: This is still a work in progress! There may be bugs with the new stuff!</font></h3>
+            <h3><center>How to use:<center></h3>
             <ul>
                 <li>Click on numbered buttons at the top to change weeks.</li>
                 <li>
@@ -859,39 +861,48 @@
                 <li>
                     <strong>Copy the URL at near the bottom.</strong>
                     <ul>
-                        <li>It has all 256 of your predictions.</li>
+                        <li>It has all 256 of your predictions. [No playoffs YET]</li>
                         <li>Post it on Reddit.</li>
                         <li>Tweet it.</li>
                     </ul>
                 </li>
                 <li>Standings updated automatically.</li>
                 <li>
-                    NFL tie-breakers implemented all the way to <em>Strength of Schedule</em>.
-                    <br>
-                    This should cover 99%+ of realistic scenarioes.
+                    NFL tie-breakers implemented all the way to <em>Strength of Schedule</em> [For now].
                 </li>
                 <li>
                     Prime Time games are labeled:
                     <ul>
                         <li><strong>T</strong>: Thursday/Thanksgiving game</li>
                         <li><strong>Z</strong>: Saturday Night game</li>
-                        <li><strong>N</strong>: Sunday Night game (may be flexed out)</li>
+                        <li><strong>N</strong>: Sunday Night game</li>
                         <li><strong>M</strong>: Monday Night game</li>
-                        <li><strong>U</strong>: game @ London, UK</li>
-                        <li><strong>C</strong>: game @ Toronto, Canada</li>
+                        <li><strong>I</strong>: International game</li>
                     </ul>
                 </li>
             </ul>
-			<h3>0003mg's Todo List:</h3>
+			<h3><center>What's new in V2?</center></h3>
 			<ul>
 				<li>
-					Keep Working on Playoffs
+					Now ranks teams 1-16 in each conference and color codes the playoff teams
 				</li>
 				<li>
-					Fix SOS Bug
+					You can now predict the winners of the playoff games [Not saved to URL just yet]
 				</li>
 				<li>
-					Rest of the tie-breakers (Including Points)
+					Games that have already been played can now be updated with a simple click
+				</li>
+				<li>
+					A new look
+				</li>
+				<li>
+					[COMING SOON]: You can soon see why a team is a specific seed
+				</li>
+				<li>
+					[COMING SOON]: Fixing the Strength of Schedule bug
+				</li>
+				<li>
+					[COMING SOON]: Implementing the tie-breakers past Strength of Schedule
 				</li>
 			</ul>
         </div>
@@ -1050,25 +1061,22 @@
         </div>
         <div id="footer" class="header_warning" style="clear: both; text-align: center;">
             All team logos are belong to their respective teams. See <a href="http://nfl.com/">nfl.com</a> for details on that.<br>
-            Original Javascript code copyright © 2013 Clinton Morell<br>
-			Updated to 1.5 © 2014-2015 Raymond Lehnhoff<br>
-			Updated to 1.6 © 2015 /u/Chibears85<br>
-			Updated to 2.0 © 2015 Eric Murphy<br>
+            Javascript code copyright © 2015 Clinton Morell, Raymond Lehnhoff, Eric Murphy
         </div>
     </div>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="prettify.js"></script>
     <script type="text/javascript" src="n.js"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+	
+		(function(i,s,o,g,r,a,m){
+			i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-50019712-2', 'raylehnhoff.github.io');
-        ga('send', 'pageview');
+		ga('create', 'UA-71026684-1', 'auto');
+		ga('send', 'pageview');
 
         $(document).ready(function () {
             markdownExport();
