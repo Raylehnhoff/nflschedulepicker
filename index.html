@@ -1054,7 +1054,14 @@
                 </tbody>
             </table>
         </div>
-        <div id="fb-root"></div>
+        <div class="save_footer" id="save_footer" style="clear: both;">
+            <span id="unpicked-warning" class="unpicked-warning"></span>URL save link is:<br>
+            <span style="font-size: 0.6em; font-weight: normal;" id="save_string"></span>
+            <h2>Reddit Markdown Export</h2>
+            <input type="checkbox" onclick="rnfl(this)"/> Apply /r/nfl styles?
+            <pre class="prettyprint" style="font-size:8px;"><code id="markdownField"></code></pre>
+        </div>
+                <div id="fb-root"></div>
 	<script>(function(d, s, id) {
   	var js, fjs = d.getElementsByTagName(s)[0];
   	if (d.getElementById(id)) return;
@@ -1063,13 +1070,6 @@
 	 fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
     	<div class="fb-comments" data-href="http://chibears85.github.io/nflschedulepicker/" data-numposts="5"></div>
-        <div class="save_footer" id="save_footer" style="clear: both;">
-            <span id="unpicked-warning" class="unpicked-warning"></span>URL save link is:<br>
-            <span style="font-size: 0.6em; font-weight: normal;" id="save_string"></span>
-            <h2>Reddit Markdown Export</h2>
-            <input type="checkbox" onclick="rnfl(this)"/> Apply /r/nfl styles?
-            <pre class="prettyprint" style="font-size:8px;"><code id="markdownField"></code></pre>
-        </div>
         <div id="footer" class="header_warning" style="clear: both; text-align: center;">
             All team logos are belong to their respective teams. See <a href="http://nfl.com/">nfl.com</a> for details on that.<br>
             Original Javascript code copyright © 2013 Clinton Morell<br>
