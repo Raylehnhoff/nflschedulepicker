@@ -1527,7 +1527,7 @@ function update_outcomes() {
 
 function update_outcomes2() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpllWqpWlaqpqB_');
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmplZmaaalaqpqB_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
