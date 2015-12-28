@@ -18,7 +18,7 @@ function set_game_cookie(c, a) {
     } set_visible_cookie(b)
 }
 function set_visible_cookie(a) {
-    document.getElementById("save_string").innerHTML = "http://0003mg.github.io/nflschedulepicker/?a=" + a
+    document.getElementById("save_string").innerHTML = "http://chibears85.github.io/nflschedulepicker/?a=" + a
 }
 function getCookie(b) {
     var c, a, e, d = document.cookie.split(";");
@@ -1518,7 +1518,7 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmplZmaSKAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
