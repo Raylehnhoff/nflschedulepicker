@@ -163,7 +163,7 @@
             background-position: 0 -832px;
         }
 
-        .sp-mSTL {
+        .sp-mLA {
             background-position: 0 -896px;
         }
 
@@ -298,7 +298,7 @@
             background-position: 0 -540px;
         }
 
-        .sp-sSTL {
+        .sp-sLA {
             background-position: 0 -560px;
         }
 
@@ -392,7 +392,7 @@
             border-color: black;
         }
 
-        .STL {
+        .LA {
             background-color: #13264b;
             color: #c9af74;
             border-color: #c9af74;
@@ -671,9 +671,7 @@
 				<input type="button" class="button_up" id="help-button" value="Help" onclick="show_help()" />
                 <input type="button" class="up" id="reset-button" value="Reset all games" onclick="reset_button()" />
 				<input type="button" class="button_up" id="tie-explain-button" value="Explain Tiebreakers" onclick="explain_ties()" />
-				.....
 				<input type="button" class="up" id="update-button" value="Update Outcomes" onclick="update_outcomes()" />
-				<input type="button" class="up" id="ranks-button" value="Fill all w/ Win Percentage" onclick="update_outcomes2()" />
 			</h3>
             <input type="button" class="button_up" id="week-1-button" value="1" onclick="    show_week_tab('week-1')" />
             <input type="button" class="button_up" id="week-2-button" value="2" onclick="    show_week_tab('week-2')" />
@@ -863,7 +861,7 @@
                 <li>
                     <strong>Copy the URL at near the bottom.</strong>
                     <ul>
-                        <li>It has all 256 of your predictions. [No playoffs YET]</li>
+                        <li>It has all 256 of your predictions.</li>
                         <li>Post it on Reddit.</li>
                         <li>Tweet it.</li>
                     </ul>
@@ -875,8 +873,8 @@
                 <li>
                     Prime Time games are labeled:
                     <ul>
-                        <li><strong>T</strong>: Thursday/Thanksgiving game</li>
-                        <li><strong>Z</strong>: Saturday Night game</li>
+                        <li><strong>T</strong>: Thursday game</li>
+                        <li><strong>Z</strong>: Saturday game</li>
                         <li><strong>N</strong>: Sunday Night game</li>
                         <li><strong>M</strong>: Monday Night game</li>
                         <li><strong>I</strong>: International game</li>
@@ -1030,12 +1028,12 @@
                         <td id="ARI-div">0-0</td>
                         <td id="ARI-div-rank" style="display: none;">0</td>
                     </tr>
-                    <tr onclick="show_team_tab('STL')">
-                        <td id="STL-conf-rank">-</td>
-                        <td id="STL-button"><div class="ms-icon sp-sSTL" style="float: left"></div>St. Louis</td>
-                        <td id="STL-WLT">0-0</td>
-                        <td id="STL-div">0-0</td>
-                        <td id="STL-div-rank" style="display: none;">0</td>
+                    <tr onclick="show_team_tab('LA')">
+                        <td id="LA-conf-rank">-</td>
+                        <td id="LA-button"><div class="ms-icon sp-sLA" style="float: left"></div>Los Angeles</td>
+                        <td id="LA-WLT">0-0</td>
+                        <td id="LA-div">0-0</td>
+                        <td id="LA-div-rank" style="display: none;">0</td>
                     </tr>
                     <tr onclick="show_team_tab('SF')">
                         <td id="SF-conf-rank">-</td>
@@ -1057,25 +1055,14 @@
         <div class="save_footer" id="save_footer" style="clear: both;">
             <span id="unpicked-warning" class="unpicked-warning"></span>URL save link is:<br>
             <span style="font-size: 0.6em; font-weight: normal;" id="save_string"></span>
-                            <div id="fb-root"></div>
-	<script>(function(d, s, id) {
-  	var js, fjs = d.getElementsByTagName(s)[0];
-  	if (d.getElementById(id)) return;
-  	js = d.createElement(s); js.id = id;
-  	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=245058047282";
-	 fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-    	<div class="fb-comments" data-href="http://chibears85.github.io/nflschedulepicker/" data-numposts="5"></div>
             <h2>Reddit Markdown Export</h2>
             <input type="checkbox" onclick="rnfl(this)"/> Apply /r/nfl styles?
             <pre class="prettyprint" style="font-size:8px;"><code id="markdownField"></code></pre>
         </div>
         <div id="footer" class="header_warning" style="clear: both; text-align: center;">
             All team logos are belong to their respective teams. See <a href="http://nfl.com/">nfl.com</a> for details on that.<br>
-            Original Javascript code copyright © 2013 Clinton Morell<br>
-			Updated to 1.5 © 2014-2015 Raymond Lehnhoff<br>
-			Updated to 1.6 © 2015 /u/Chibears85<br>
-			Updated to 2.0 © 2015 Eric Murphy<br>
+            Javascript code copyright © 2016 Clinton Morell, Raymond Lehnhoff, Eric Murphy
+        </div>
     </div>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="prettify.js"></script>
@@ -1122,6 +1109,5 @@
         }
 
     </script>
-    
 </body>
 </html>
