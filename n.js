@@ -18,7 +18,7 @@ function set_game_cookie(c, a) {
     } set_visible_cookie(b)
 }
 function set_visible_cookie(a) {
-    document.getElementById("save_string").innerHTML = "http://chibears85.github.io/nflschedulepicker/?a=" + a
+    document.getElementById("save_string").innerHTML = "http://0003mg.github.io/nflschedulepicker/?a=" + a
 }
 function getCookie(b) {
     var c, a, e, d = document.cookie.split(";");
@@ -32,29 +32,29 @@ function getCookie(b) {
     }
 }
 var conferenceRankingObject = {};
-var games_cookie_name = "NFL2014",
+var games_cookie_name = "NFL2016",
     cookie_letter_length = 86,
     cookie64_re = /-[A-Za-z0-9\-_]{86}_?/,
     base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
     number_of_weeks = 21,
     week_lists = [
-        /*1*/["PIT-NE", "GB-CHI", "KC-HOU", "CLE-NYJ", "IND-BUF", "MIA-WAS", "CAR-JAC", "SEA-STL", "NO-ARI", "DET-SD", "TEN-TB", "CIN-OAK", "BAL-DEN", "NYG-DAL", "PHI-ATL", "MIN-SF"],
-        /*2*/["DEN-KC", "HOU-CAR", "SF-PIT", "TB-NO", "DET-MIN", "ARI-CHI", "NE-BUF", "SD-CIN", "TEN-CLE", "ATL-NYG", "STL-WAS", "MIA-JAC", "BAL-OAK", "DAL-PHI", "SEA-GB", "NYJ-IND"],
-        /*3*/["WAS-NYG", "ATL-DAL", "IND-TEN", "OAK-CLE", "CIN-BAL", 'JAC-NE', 'NO-CAR', 'PHI-NYJ', 'TB-HOU', 'SD-MIN', 'PIT-STL', 'SF-ARI', 'BUF-MIA', 'CHI-SEA', 'DEN-DET', 'KC-GB'],
-        /*4*/['BAL-PIT', 'NYJ-MIA', 'JAC-IND', 'NYG-BUF', 'CAR-TB', 'PHI-WAS', 'OAK-CHI', 'HOU-ATL', 'KC-CIN', 'CLE-SD', 'GB-SF', 'STL-ARI', 'MIN-DEN', 'DAL-NO', 'DET-SEA'],
-        /*5*/['IND-HOU', 'CHI-KC', 'SEA-CIN', 'WAS-ATL', 'JAC-TB', 'NO-PHI', 'CLE-BAL', 'STL-GB', 'BUF-TEN', 'ARI-DET', 'NE-DAL', 'DEN-OAK', 'SF-NYG', 'PIT-SD'],
-        /*6*/['ATL-NO', 'WAS-NYJ', 'ARI-PIT', 'KC-MIN', 'CIN-BUF', 'CHI-DET', 'DEN-CLE', 'HOU-JAC', 'MIA-TEN', 'CAR-SEA', 'SD-GB', 'BAL-SF', 'NE-IND', 'NYG-PHI'],
-        /*7*/['SEA-SF', 'BUF-JAC', 'TB-WAS', 'ATL-TEN', 'NO-IND', 'MIN-DET', 'PIT-KC', 'CLE-STL', 'HOU-MIA', 'NYJ-NE', 'OAK-SD', 'DAL-NYG', 'PHI-CAR', 'BAL-ARI'],
-        /*8*/['MIA-NE', 'DET-KC', 'TB-ATL', 'ARI-CLE', 'SF-STL', 'NYG-NO', 'MIN-CHI', 'SD-BAL', 'CIN-PIT', 'TEN-HOU', 'NYJ-OAK', 'SEA-DAL', 'GB-DEN', 'IND-CAR'],
-        /*9*/['CLE-CIN', 'GB-CAR', 'WAS-NE', 'TEN-NO', 'MIA-BUF', 'STL-MIN', 'JAC-NYJ', 'OAK-PIT', 'NYG-TB', 'ATL-SF', 'DEN-IND', 'PHI-DAL', 'CHI-SD'],
-        /*10*/['BUF-NYJ', 'DET-GB', 'DAL-TB', 'CAR-TEN', 'CHI-STL', 'NO-WAS', 'MIA-PHI', 'CLE-PIT', 'JAC-BAL', 'MIN-OAK', 'NE-NYG', 'KC-DEN', 'ARI-SEA', 'HOU-CIN'],
-        /*11*/['TEN-JAC', 'OAK-DET', 'IND-ATL', 'NYJ-HOU', 'TB-PHI', 'DEN-CHI', 'GB-MIN', 'STL-BAL', 'DAL-MIA', 'WAS-CAR', 'CIN-ARI', 'SF-SEA', 'KC-SD', 'BUF-NE'],
-        /*12*/['PHI-DET', 'CAR-DAL', 'CHI-GB', 'NO-HOU', 'STL-CIN', 'MIN-ATL', 'NYG-WAS', 'TB-IND', 'BUF-KC', 'OAK-TEN', 'SD-JAC', 'MIA-NYJ', 'ARI-SF', 'PIT-SEA', 'NE-DEN', 'BAL-CLE'],
-        /*13*/['GB-DET', 'NYJ-NYG', 'ARI-STL', 'ATL-TB', 'CAR-NO', 'SEA-MIN', 'HOU-BUF', 'BAL-MIA', 'CIN-CLE', 'JAC-TEN', 'SF-CHI', 'DEN-SD', 'KC-OAK', 'PHI-NE', 'IND-PIT', 'DAL-WAS'],
-        /*14*/['MIN-ARI', 'BUF-PHI', 'SF-CLE', 'DET-STL', 'NO-TB', 'TEN-NYJ', 'PIT-CIN', 'NE-HOU', 'IND-JAC', 'SD-KC', 'WAS-CHI', 'ATL-CAR', 'OAK-DEN', 'DAL-GB', 'SEA-BAL', 'NYG-MIA'],
-        /*15*/['TB-STL', 'NYJ-DAL', 'CHI-MIN', 'ATL-JAC', 'HOU-IND', 'ARI-PHI', 'CAR-NYG', 'TEN-NE', 'BUF-WAS', 'KC-BAL', 'CLE-SEA', 'GB-OAK', 'DEN-PIT', 'MIA-SD', 'CIN-SF', 'DET-NO'],
-        /*16*/['SD-OAK', 'WAS-PHI', 'NE-NYJ', 'HOU-TEN', 'CLE-KC', 'IND-MIA', 'JAC-NO', 'SF-DET', 'DAL-BUF', 'CHI-TB', 'CAR-ATL', 'NYG-MIN', 'STL-SEA', 'GB-ARI', 'PIT-BAL', 'CIN-DEN'],
-        /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'OAK-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'SD-DEN', 'SEA-ARI', 'STL-SF'],
+        /*1*/["CAR-DEN", "TB-ATL", "MIN-TEN", "CLE-PHI", "CIN-NYJ", "OAK-NO", "SD-KC", "BUF-BAL", "CHI-HOU", "GB-JAC", "MIA-SEA", "NYG-DAL", "DET-IND", "NE-ARI", "PIT-WAS", "LA-SF"],
+        /*2*/["NYJ-BUF", "SF-CAR", "DAL-WAS", "CIN-PIT", "NO-NYG", "MIA-NE", "KC-HOU", "TEN-DET", "BAL-CLE", "SEA-LA", "TB-ARI", "JAC-SD", "ATL-OAK", "IND-DEN", "GB-MIN", "PHI-CHI"],
+        /*3*/["HOU-NE", "ARI-BUF", "OAK-TEN", "WAS-NYG", "CLE-MIA", "BAL-JAC", "DET-GB", "DEN-CIN", "MIN-CAR", "LA-TB", "SF-SEA", "NYJ-KC", "SD-IND", "PIT-PHI", "CHI-DAL", "ATL-NO"],
+        /*4*/["MIA-CIN", "IND-JAC", "TEN-HOU", "CLE-WAS", "SEA-NYJ", "BUF-NE", "CAR-ATL", "OAK-BAL", "DET-CHI", "DEN-TB", "LA-ARI", "NO-SD", "DAL-SF", "KC-PIT", "NYG-MIN"],
+        /*5*/["ARI-SF", "NE-CLE", "PHI-DET", "CHI-IND", "TEN-MIA", "WAS-BAL", "HOU-MIN", "NYJ-PIT", "ATL-DEN", "CIN-DAL", "BUF-LA", "SD-OAK", "NYG-GB", "TB-CAR"],
+        /*6*/["DEN-SD", "SF-BUF", "PHI-WAS", "CLE-TEN", "BAL-NYG", "CAR-NO", "JAC-CHI", "LA-DET", "PIT-MIA", "CIN-NE", "KC-OAK", "ATL-SEA", "DAL-GB", "IND-HOU", "NYJ-ARI"],
+        /*7*/["CHI-GB", "NYG-LA", "NO-KC", "IND-TEN", "MIN-PHI", "CLE-CIN", "WAS-DET", "OAK-JAC", "BUF-MIA", "BAL-NYJ", "TB-SF", "SD-ATL", "NE-PIT", "SEA-ARI", "HOU-DEN"],
+        /*8*/["JAC-TEN", "WAS-CIN", "KC-IND", "OAK-TB", "SEA-NO", "DET-HOU", "NYJ-CLE", "GB-ATL", "NE-BUF", "SD-DEN", "ARI-CAR", "PHI-DAL", "MIN-CHI"],
+        /*9*/["ATL-TB", "DET-MIN", "PHI-NYG", "NYJ-MIA", "JAC-KC", "DAL-CLE", "PIT-BAL", "NO-SF", "CAR-LA", "IND-GB", "TEN-SD", "DEN-OAK", "BUF-SEA"],
+        /*10*/["CLE-BAL", "HOU-JAC", "DEN-NO", "LA-NYJ", "ATL-PHI", "KC-CAR", "CHI-TB", "MIN-WAS", "GB-TEN", "MIA-SD", "SF-ARI", "DAL-PIT", "SEA-NE", "CIN-NYG"],
+        /*11*/["NO-CAR", "PIT-CLE", "BAL-DAL", "JAC-DET", "TEN-IND", "BUF-CIN", "TB-KC", "CHI-NYG", "ARI-MIN", "MIA-LA", "NE-SF", "PHI-SEA", "GB-WAS", "HOU-OAK"],
+        /*12*/["MIN-DET", "WAS-DAL", "PIT-IND", "TEN-CHI", "JAC-BUF", "CIN-BAL", "ARI-ATL", "NYG-CLE", "LA-NO", "SF-MIA", "SD-HOU", "SEA-TB", "CAR-OAK", "KC-DEN", "NE-NYJ", "GB-PHI"],
+        /*13*/["DAL-MIN", "KC-ATL", "DET-NO", "LA-NE", "DEN-JAC", "HOU-GB", "PHI-CIN", "MIA-BAL", "SF-CHI", "BUF-OAK", "NYG-PIT", "WAS-ARI", "TB-SD", "CAR-SEA", "IND-NYJ"],
+        /*14*/["OAK-KC", "PIT-BUF", "DEN-TEN", "NO-TB", "WAS-PHI", "ARI-MIA", "SD-CAR", "CIN-CLE", "CHI-DET", "HOU-IND", "MIN-JAC", "NYJ-SF", "ATL-LA", "SEA-GB", "DAL-NYG", "BAL-NE"],
+        /*15*/["LA-SEA", "MIA-NYJ", "GB-CHI", "TB-DAL", "JAC-HOU", "CLE-BUF", "PHI-BAL", "TEN-KC", "DET-NYG", "IND-MIN", "NO-ARI", "SF-ATL", "NE-DEN", "OAK-SD", "PIT-CIN", "CAR-WAS"],
+        /*16*/["NYG-PHI", "MIA-BUF", "TB-NO", "NYJ-NE", "TEN-JAC", "MIN-GB", "SD-CLE", "WAS-CHI", "ATL-CAR", "IND-OAK", "ARI-SEA", "SF-LA", "CIN-HOU", "BAL-PIT", "DEN-KC", "DET-DAL"],
+        /*17*/["NO-ATL", "BAL-CIN", "NYG-WAS", "HOU-TEN", "CAR-TB", "GB-DET", "JAC-IND", "NE-MIA", "CHI-MIN", "BUF-NYJ", "DAL-PHI", "CLE-PIT", "ARI-LA", "OAK-DEN", "KC-SD", "SEA-SF"],
 		/*WC*/[],
 		/*DV*/[],
 		/*CH*/[],
@@ -74,99 +74,100 @@ var games_cookie_name = "NFL2014",
     + "T             NM"  //03
     + "TI           NM"    //04
     + "T           NM"  //05
-    + "T           NM"  //06
-    + "TI          NM"  //07
-    + "TI          NM"  //08
+    + "T            NM"  //06
+    + "TI           NM"  //07
+    + "TI         NM"  //08
     + "T          NM"    //09
     + "T           NM"    //10
-    + "T         N  M"   //11
+    + "T           NM"   //11
     + "TTT           NM"  //12
-    + "T             NM" //13
-    + "T      N       M" //14
+    + "T            NM" //13
+    + "T             NM" //14
     + "TZ            NM" //15
-    + "TZ            NM" //16
+    + "TZZZZZZZZZZZZ NM" //16
     + "                " //17
     ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", I: "International game", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
-        4: "NE TEN",
-        5: "CAR MIA MIN NYJ",
-        6: "DAL OAK STL TB",
-        7: "CHI CIN DEN GB",
-        8: "BUF JAC PHI WAS",
-        9: "ARI BAL DET HOU KC SEA",
-        10: "ATL IND SD SF",
-        11: "CLE NO NYG PIT"
+        4: "GB PHI",
+        5: "JAC KC NO SEA",
+        6: "MIN TB",
+        7: "CAR DAL",
+        8: "BAL LA MIA NYG PIT SF",
+        9: "ARI CHI CIN HOU NE WAS",
+        10: "BUF DET IND OAK",
+        11: "ATL DEN NYJ SD",
+		13: "CLE TEN"
     },
     foe_lookup =
     {
-        ARI: ['NO', 'CHI', 'SF', 'STL', 'DET', 'PIT', 'BAL', 'CLE', 'SEA', 'CIN', 'SF', 'STL', 'MIN', 'PHI', 'GB', 'SEA'],
-        ATL: ['PHI', 'NYG', 'DAL', 'HOU', 'WAS', 'NO', 'TEN', 'TB', 'SF', 'IND', 'MIN', 'TB', 'CAR', 'JAC', 'CAR', 'NO'],
-        BAL: ['DEN', 'OAK', 'CIN', 'PIT', 'CLE', 'SF', 'ARI', 'SD', 'JAC', 'STL', 'CLE', 'MIA', 'SEA', 'KC', 'PIT', 'CIN'],
-        BUF: ['IND', 'NE', 'MIA', 'NYG', 'TEN', 'CIN', 'JAC', 'MIA', 'NYJ', 'NE', 'KC', 'HOU', 'PHI', 'WAS', 'DAL', 'NYJ'],
-        CAR: ['JAC', 'HOU', 'NO', 'TB', 'SEA', 'PHI', 'IND', 'GB', 'TEN', 'WAS', 'DAL', 'NO', 'ATL', 'NYG', 'ATL', ' TB'],
-        CHI: ['GB', 'ARI', 'SEA', 'OAK', 'KC', 'DET', 'MIN', 'SD', 'STL', 'DEN', 'GB', 'SF', 'WAS', 'MIN', 'TB', 'DET'],
-        CIN: ['OAK', 'SD', 'BAL', 'KC', 'SEA', 'BUF', 'PIT', 'CLE', 'HOU', 'ARI', 'STL', 'CLE', 'PIT', 'SF', 'DEN', 'BAL'],
-        CLE: ['NYJ', 'TEN', 'OAK', 'SD', 'BAL', 'DEN', 'STL', 'ARI', 'CIN', 'PIT', 'BAL', 'CIN', 'SF', 'SEA', 'KC', 'PIT'],
-        DAL: ['NYG', 'PHI', 'ATL', 'NO', 'NE', 'NYG', 'SEA', 'PHI', 'TB', 'MIA', 'CAR', 'WAS', 'GB', 'NYJ', 'BUF', 'WAS'],
-        DEN: ['BAL', 'KC', 'DET', 'MIN', 'OAK', 'CLE', 'GB', 'IND', 'KC', 'CHI', 'NE', 'SD', 'OAK', 'PIT', 'CIN', 'SD'],
-        DET: ['SD', 'MIN', 'DEN', 'SEA', 'ARI', 'CHI', 'MIN', 'KC', 'GB', 'OAK', 'PHI', 'GB', 'STL', 'NO', 'SF', 'CHI'],
-        GB: ['CHI', 'SEA', 'KC', 'SF', 'STL', 'SD', 'DEN', 'CAR', 'DET', 'MIN', 'CHI', 'DET', 'DAL', 'OAK', 'ARI', 'MIN'],
-        HOU: ['KC', 'CAR', 'TB', 'ATL', 'IND', 'JAC', 'MIA', 'TEN', 'CIN', 'NYJ', 'NO', 'BUF', 'NE', 'IND', 'TEN', 'JAC'],
-        IND: ['BUF', 'NYJ', 'TEN', 'JAC', 'HOU', 'NE', 'NO', 'CAR', 'DEN', 'ATL', 'TB', 'PIT', 'JAC', 'HOU', 'MIA', 'TEN'],
-        JAC: ['CAR', 'MIA', 'NE', 'IND', 'TB', 'HOU', 'BUF', 'NYJ', 'BAL', 'TEN', 'SD', 'TEN', 'IND', 'ATL', 'NO', 'HOU'],
-        KC: ['HOU', 'DEN', 'GB', 'CIN', 'CHI', 'MIN', 'PIT', 'DET', 'DEN', 'SD', 'BUF', 'OAK', 'SD', 'BAL', 'CLE', 'OAK'],
-        MIA: ['WAS', 'JAC', 'BUF', 'NYJ', 'TEN', 'HOU', 'NE', 'BUF', 'PHI', 'DAL', 'NYJ', 'BAL', 'NYG', 'SD', 'IND', 'NE'],
-        MIN: ['SF', 'DET', 'SD', 'DEN', 'KC', 'DET', 'CHI', 'STL', 'OAK', 'GB', 'ATL', 'SEA', 'ARI', 'CHI', 'NYG', 'GB'],
-        NE: ['PIT', 'BUF', 'JAC', 'DAL', 'IND', 'NYJ', 'MIA', 'WAS', 'NYG', 'BUF', 'DEN', 'PHI', 'HOU', 'TEN', 'NYJ', 'MIA'],
-        NO: ['ARI', 'TB', 'CAR', 'DAL', 'PHI', 'ATL', 'IND', 'NYG', 'TEN', 'WAS', 'HOU', 'CAR', 'TB', 'DET', 'JAC', 'ATL'],
-        NYG: ['DAL', 'ATL', 'WAS', 'BUF', 'SF', 'PHI', 'DAL', 'NO', 'TB', 'NE', 'WAS', 'NYJ', 'MIA', 'CAR', 'MIN', 'PHI'],
-        NYJ: ['CLE', 'IND', 'PHI', 'MIA', 'WAS', 'NE', 'OAK', 'JAC', 'BUF', 'HOU', 'MIA', 'NYG', 'TEN', 'DAL', 'NE', 'BUF'],
-        OAK: ['CIN', 'BAL', 'CLE', 'CHI', 'DEN', 'SD', 'NYJ', 'PIT', 'MIN', 'DET', 'TEN', 'KC', 'DEN', 'GB', 'SD', 'KC'],
-        PHI: ['ATL', 'DAL', 'NYJ', 'WAS', 'NO', 'NYG', 'CAR', 'DAL', 'MIA', 'TB', 'DET', 'NE', 'BUF', 'ARI', 'WAS', 'NYG'],
-        PIT: ['NE', 'SF', 'STL', 'BAL', 'SD', 'ARI', 'KC', 'CIN', 'OAK', 'CLE', 'SEA', 'IND', 'CIN', 'DEN', 'BAL', 'CLE'],
-        SD: ['DET', 'CIN', 'MIN', 'CLE', 'PIT', 'GB', 'OAK', 'BAL', 'CHI', 'KC', 'JAC', 'DEN', 'KC', 'MIA', 'OAK', 'DEN'],
-        SEA: ['STL', 'GB', 'CHI', 'DET', 'CIN', 'CAR', 'SF', 'DAL', 'ARI', 'SF', 'PIT', 'MIN', 'BAL', 'CLE', 'STL', 'ARI'],
-        SF: ['MIN', 'PIT', 'ARI', 'GB', 'NYG', 'BAL', 'SEA', 'STL', 'ATL', 'SEA', 'ARI', 'CHI', 'CLE', 'CIN', 'DET', 'STL'],
-        STL: ['SEA', 'WAS', 'PIT', 'ARI', 'GB', 'CLE', 'SF', 'MIN', 'CHI', 'BAL', 'CIN', 'ARI', 'DET', 'TB', 'SEA', 'SF'],
-        TB: ['TEN', 'NO', 'HOU', 'CAR', 'JAC', 'WAS', 'ATL', 'NYG', 'DAL', 'PHI', 'IND', 'ATL', 'NO', 'STL', 'CHI', 'CAR'],
-        TEN: ['TB', 'CLE', 'IND', 'BUF', 'MIA', 'ATL', 'HOU', 'NO', 'CAR', 'JAC', 'OAK', 'JAC', 'NYJ', 'NE', 'HOU', 'IND'],
-        WAS: ['MIA', 'STL', 'NYG', 'PHI', 'ATL', 'NYJ', 'TB', 'NE', 'NO', 'CAR', 'NYG', 'DAL', 'CHI', 'BUF', 'PHI', 'DAL']
+        ARI: ['NE', 'TB', 'BUF', 'LA', 'SF', 'NYJ', 'SEA', 'CAR', 'SF', 'MIN', 'ATL', 'WAS', 'MIA', 'NO', 'SEA', 'LA'],
+        ATL: ['TB', 'OAK', 'NO', 'CAR', 'DEN', 'SEA', 'SD', 'GB', 'TB', 'PHI', 'ARI', 'KC', 'LA', 'SF', 'CAR', 'NO'],
+        BAL: ['BUF', 'CLE', 'JAC', 'OAK', 'WAS', 'NYG', 'NYJ', 'PIT', 'CLE', 'DAL', 'CIN', 'MIA', 'NE', 'PHI', 'PIT', 'CIN'],
+        BUF: ['BAL', 'NYJ', 'ARI', 'NE', 'LA', 'SF', 'MIA', 'NE', 'SEA', 'CIN', 'JAC', 'OAK', 'PIT', 'CLE', 'MIA', 'NYJ'],
+        CAR: ['DEN', 'SF', 'MIN', 'ATL', 'TB', 'NO', 'ARI', 'LA', 'KC', 'NO', 'OAK', 'SEA', 'SD', 'WAS', 'ATL', ' TB'],
+        CHI: ['HOU', 'PHI', 'DAL', 'DET', 'IND', 'JAC', 'GB', 'MIN', 'TB', 'NYG', 'TEN', 'SF', 'DET', 'GB', 'WAS', 'MIN'],
+        CIN: ['NYJ', 'PIT', 'DEN', 'MIA', 'DAL', 'NE', 'CLE', 'WAS', 'NYG', 'BUF', 'BAL', 'PHI', 'CLE', 'PIT', 'HOU', 'BAL'],
+        CLE: ['PHI', 'BAL', 'MIA', 'WAS', 'NE', 'TEN', 'CIN', 'NYJ', 'DAL', 'BAL', 'PIT', 'NYG', 'CIN', 'BUF', 'SD', 'PIT'],
+        DAL: ['NYG', 'WAS', 'CHI', 'SF', 'CIN', 'GB', 'PHI', 'CLE', 'PIT', 'BAL', 'WAS', 'MIN', 'NYG', 'TB', 'DET', 'PHI'],
+        DEN: ['CAR', 'IND', 'CIN', 'TB', 'ATL', 'SD', 'HOU', 'SD', 'OAK', 'NO', 'KC', 'JAC', 'TEN', 'NE', 'KC', 'OAK'],
+        DET: ['IND', 'TEN', 'GB', 'CHI', 'PHI', 'LA', 'WAS', 'HOU', 'MIN', 'JAC', 'MIN', 'NO', 'CHI', 'NYG', 'DAL', 'GB'],
+        GB: ['JAC', 'MIN', 'DET', 'NYG', 'DAL', 'CHI', 'ATL', 'IND', 'TEN', 'WAS', 'PHI', 'HOU', 'SEA', 'CHI', 'MIN', 'DET'],
+        HOU: ['CHI', 'KC', 'NE', 'TEN', 'MIN', 'IND', 'DEN', 'DET', 'JAC', 'OAK', 'SD', 'GB', 'IND', 'JAC', 'CIN', 'TEN'],
+        IND: ['DET', 'DEN', 'SD', 'JAC', 'CHI', 'HOU', 'TEN', 'KC', 'GB', 'TEN', 'PIT', 'NYJ', 'HOU', 'MIN', 'OAK', 'JAC'],
+        JAC: ['GB', 'SD', 'BAL', 'IND', 'CHI', 'OAK', 'TEN', 'KC', 'HOU', 'DET', 'BUF', 'DEN', 'MIN', 'HOU', 'TEN', 'IND'],
+        KC: ['SD', 'HOU', 'NYJ', 'PIT', 'OAK', 'NO', 'IND', 'JAC', 'CAR', 'TB', 'DEN', 'ATL', 'OAK', 'TEN', 'DEN', 'SD'],
+		LA: ['SF', 'SEA', 'TB', 'ARI', 'BUF', 'DET', 'NYG', 'CAR', 'NYJ', 'MIA', 'NO', 'NE', 'ATL', 'SEA', 'SF', 'ARI'],
+        MIA: ['SEA', 'NE', 'CLE', 'CIN', 'TEN', 'PIT', 'BUF', 'NYJ', 'SD', 'LA', 'SF', 'BAL', 'ARI', 'NYJ', 'BUF', 'NE'],
+        MIN: ['TEN', 'GB', 'CAR', 'NYG', 'HOU', 'PHI', 'CHI', 'DET', 'WAS', 'ARI', 'DET', 'DAL', 'JAC', 'IND', 'GB', 'CHI'],
+        NE: ['ARI', 'MIA', 'HOU', 'BUF', 'CLE', 'CIN', 'PIT', 'BUF', 'SEA', 'SF', 'NYJ', 'LA', 'BAL', 'DEN', 'NYJ', 'MIA'],
+        NO: ['OAK', 'NYG', 'ATL', 'SD', 'CAR', 'KC', 'SEA', 'SF', 'DEN', 'CAR', 'LA', 'DET', 'TB', 'ARI', 'TB', 'ATL'],
+        NYG: ['DAL', 'NO', 'WAS', 'MIN', 'GB', 'BAL', 'LA', 'PHI', 'CIN', 'CHI', 'CLE', 'PIT', 'DAL', 'DET', 'PHI', 'WAS'],
+        NYJ: ['CIN', 'BUF', 'KC', 'SEA', 'PIT', 'ARI', 'BAL', 'CLE', 'MIA', 'LA', 'NE', 'IND', 'SF', 'MIA', 'NE', 'BUF'],
+        OAK: ['NO', 'ATL', 'TEN', 'BAL', 'SD', 'KC', 'JAC', 'TB', 'DEN', 'HOU', 'CAR', 'BUF', 'KC', 'SD', 'IND', 'DEN'],
+        PHI: ['CLE', 'CHI', 'PIT', 'DET', 'WAS', 'MIN', 'DAL', 'NYG', 'ATL', 'SEA', 'GB', 'CIN', 'WAS', 'BAL', 'NYG', 'DAL'],
+        PIT: ['WAS', 'CIN', 'PHI', 'KC', 'NYJ', 'MIA', 'NE', 'BAL', 'DAL', 'CLE', 'IND', 'NYG', 'BUF', 'CIN', 'BAL', 'CLE'],
+        SD: ['KC', 'JAC', 'IND', 'NO', 'OAK', 'DEN', 'ATL', 'DEN', 'TEN', 'MIA', 'HOU', 'TB', 'CAR', 'OAK', 'CLE', 'KC'],
+        SEA: ['MIA', 'LA', 'SF', 'NYJ', 'ATL', 'ARI', 'NO', 'BUF', 'NE', 'PHI', 'TB', 'CAR', 'GB', 'LA', 'ARI', 'SF'],
+        SF: ['LA', 'CAR', 'SEA', 'DAL', 'ARI', 'BUF', 'TB', 'NO', 'ARI', 'NE', 'MIA', 'CHI', 'NYJ', 'ATL', 'LA', 'SEA'],
+        TB: ['ATL', 'ARI', 'LA', 'DEN', 'CAR', 'SF', 'OAK', 'ATL', 'CHI', 'KC', 'SEA', 'SD', 'NO', 'DAL', 'NO', 'CAR'],
+        TEN: ['MIN', 'DET', 'OAK', 'HOU', 'MIA', 'CLE', 'IND', 'JAC', 'SD', 'GB', 'IND', 'CHI', 'DEN', 'KC', 'JAC', 'HOU'],
+        WAS: ['PIT', 'DAL', 'NYG', 'CLE', 'BAL', 'PHI', 'DET', 'CIN', 'MIN', 'GB', 'DAL', 'ARI', 'PHI', 'CAR', 'CHI', 'NYG']
     },
     foe_hash = {
-        ARI: { NO: 1, CHI: 1, SF: 1, STL: 1, DET: 1, PIT: 1, BAL: 1, CLE: 1, SEA: 1, CIN: 1, SF: 1, STL: 1, MIN: 1, PHI: 1, GB: 1, SEA: 1 },
-        ATL: { PHI: 1, NYG: 1, DAL: 1, HOU: 1, WAS: 1, NO: 1, TEN: 1, TB: 1, SF: 1, IND: 1, MIN: 1, TB: 1, CAR: 1, JAC: 1, CAR: 1, NO: 1 },
-        BAL: { DEN: 1, OAK: 1, CIN: 1, PIT: 1, CLE: 1, SF: 1, ARI: 1, SD: 1, JAC: 1, STL: 1, CLE: 1, MIA: 1, SEA: 1, KC: 1, PIT: 1, CIN: 1 },
-        BUF: { IND: 1, NE: 1, MIA: 1, NYG: 1, TEN: 1, CIN: 1, JAC: 1, MIA: 1, NYJ: 1, NE: 1, KC: 1, HOU: 1, PHI: 1, WAS: 1, DAL: 1, NYJ: 1 },
-        CAR: { JAC: 1, HOU: 1, NO: 1, TB: 1, SEA: 1, PHI: 1, IND: 1, GB: 1, TEN: 1, WAS: 1, DAL: 1, NO: 1, ATL: 1, NYG: 1, ATL: 1, TB: 1 },
-        CHI: { GB: 1, ARI: 1, SEA: 1, OAK: 1, KC: 1, DET: 1, MIN: 1, SD: 1, STL: 1, DEN: 1, GB: 1, SF: 1, WAS: 1, MIN: 1, TB: 1, DET: 1 },
-        CIN: { OAK: 1, SD: 1, BAL: 1, KC: 1, SEA: 1, BUF: 1, PIT: 1, CLE: 1, HOU: 1, ARI: 1, STL: 1, CLE: 1, PIT: 1, SF: 1, DEN: 1, BAL: 1 },
-        CLE: { NYJ: 1, TEN: 1, OAK: 1, SD: 1, BAL: 1, DEN: 1, STL: 1, ARI: 1, CIN: 1, PIT: 1, BAL: 1, CIN: 1, SF: 1, SEA: 1, KC: 1, PIT: 1 },
-        DAL: { NYG: 1, PHI: 1, ATL: 1, NO: 1, NE: 1, NYG: 1, SEA: 1, PHI: 1, TB: 1, MIA: 1, CAR: 1, WAS: 1, GB: 1, NYJ: 1, BUF: 1, WAS: 1 },
-        DEN: { BAL: 1, KC: 1, DET: 1, MIN: 1, OAK: 1, CLE: 1, GB: 1, IND: 1, KC: 1, CHI: 1, NE: 1, SD: 1, OAK: 1, PIT: 1, CIN: 1, SD: 1 },
-        DET: { SD: 1, MIN: 1, DEN: 1, SEA: 1, ARI: 1, CHI: 1, MIN: 1, KC: 1, GB: 1, OAK: 1, PHI: 1, GB: 1, STL: 1, NO: 1, SF: 1, CHI: 1 },
-        GB: { CHI: 1, SEA: 1, KC: 1, SF: 1, STL: 1, SD: 1, DEN: 1, CAR: 1, DET: 1, MIN: 1, CHI: 1, DET: 1, DAL: 1, OAK: 1, ARI: 1, MIN: 1 },
-        HOU: { KC: 1, CAR: 1, TB: 1, ATL: 1, IND: 1, JAC: 1, MIA: 1, TEN: 1, CIN: 1, NYJ: 1, NO: 1, BUF: 1, NE: 1, IND: 1, TEN: 1, JAC: 1 },
-        IND: { BUF: 1, NYJ: 1, TEN: 1, JAC: 1, HOU: 1, NE: 1, NO: 1, CAR: 1, DEN: 1, ATL: 1, TB: 1, PIT: 1, JAC: 1, HOU: 1, MIA: 1, TEN: 1 },
-        JAC: { CAR: 1, MIA: 1, NE: 1, IND: 1, TB: 1, HOU: 1, BUF: 1, NYJ: 1, BAL: 1, TEN: 1, SD: 1, TEN: 1, IND: 1, ATL: 1, NO: 1, HOU: 1 },
-        KC: { HOU: 1, DEN: 1, GB: 1, CIN: 1, CHI: 1, MIN: 1, PIT: 1, DET: 1, DEN: 1, SD: 1, BUF: 1, OAK: 1, SD: 1, BAL: 1, CLE: 1, OAK: 1 },
-        MIA: { WAS: 1, JAC: 1, BUF: 1, NYJ: 1, TEN: 1, HOU: 1, NE: 1, BUF: 1, PHI: 1, DAL: 1, NYJ: 1, BAL: 1, NYG: 1, SD: 1, IND: 1, NE: 1 },
-        MIN: { SF: 1, DET: 1, SD: 1, DEN: 1, KC: 1, DET: 1, CHI: 1, STL: 1, OAK: 1, GB: 1, ATL: 1, SEA: 1, ARI: 1, CHI: 1, NYG: 1, GB: 1 },
-        NE: { PIT: 1, BUF: 1, JAC: 1, DAL: 1, IND: 1, NYJ: 1, MIA: 1, WAS: 1, NYG: 1, BUF: 1, DEN: 1, PHI: 1, HOU: 1, TEN: 1, NYJ: 1, MIA: 1 },
-        NO: { ARI: 1, TB: 1, CAR: 1, DAL: 1, PHI: 1, ATL: 1, IND: 1, NYG: 1, TEN: 1, WAS: 1, HOU: 1, CAR: 1, TB: 1, DET: 1, JAC: 1, ATL: 1 },
-        NYG: { DAL: 1, ATL: 1, WAS: 1, BUF: 1, SF: 1, PHI: 1, DAL: 1, NO: 1, TB: 1, NE: 1, WAS: 1, NYJ: 1, MIA: 1, CAR: 1, MIN: 1, PHI: 1 },
-        NYJ: { CLE: 1, IND: 1, PHI: 1, MIA: 1, WAS: 1, NE: 1, OAK: 1, JAC: 1, BUF: 1, HOU: 1, MIA: 1, NYG: 1, TEN: 1, DAL: 1, NE: 1, BUF: 1 },
-        OAK: { CIN: 1, BAL: 1, CLE: 1, CHI: 1, DEN: 1, SD: 1, NYJ: 1, PIT: 1, MIN: 1, DET: 1, TEN: 1, KC: 1, DEN: 1, GB: 1, SD: 1, KC: 1 },
-        PHI: { ATL: 1, DAL: 1, NYJ: 1, WAS: 1, NO: 1, NYG: 1, CAR: 1, DAL: 1, MIA: 1, TB: 1, DET: 1, NE: 1, BUF: 1, ARI: 1, WAS: 1, NYG: 1 },
-        PIT: { NE: 1, SF: 1, STL: 1, BAL: 1, SD: 1, ARI: 1, KC: 1, CIN: 1, OAK: 1, CLE: 1, SEA: 1, IND: 1, CIN: 1, DEN: 1, BAL: 1, CLE: 1 },
-        SD: { DET: 1, CIN: 1, MIN: 1, CLE: 1, PIT: 1, GB: 1, OAK: 1, BAL: 1, CHI: 1, KC: 1, JAC: 1, DEN: 1, KC: 1, MIA: 1, OAK: 1, DEN: 1 },
-        SEA: { STL: 1, GB: 1, CHI: 1, DET: 1, CIN: 1, CAR: 1, SF: 1, DAL: 1, ARI: 1, SF: 1, PIT: 1, MIN: 1, BAL: 1, CLE: 1, STL: 1, ARI: 1 },
-        SF: { MIN: 1, PIT: 1, ARI: 1, GB: 1, NYG: 1, BAL: 1, SEA: 1, STL: 1, ATL: 1, SEA: 1, ARI: 1, CHI: 1, CLE: 1, CIN: 1, DET: 1, STL: 1 },
-        STL: { SEA: 1, WAS: 1, PIT: 1, ARI: 1, GB: 1, CLE: 1, SF: 1, MIN: 1, CHI: 1, BAL: 1, CIN: 1, ARI: 1, DET: 1, TB: 1, SEA: 1, SF: 1 },
-        TB: { TEN: 1, NO: 1, HOU: 1, CAR: 1, JAC: 1, WAS: 1, ATL: 1, NYG: 1, DAL: 1, PHI: 1, IND: 1, ATL: 1, NO: 1, STL: 1, CHI: 1, CAR: 1 },
-        TEN: { TB: 1, CLE: 1, IND: 1, BUF: 1, MIA: 1, ATL: 1, HOU: 1, NO: 1, CAR: 1, JAC: 1, OAK: 1, JAC: 1, NYJ: 1, NE: 1, HOU: 1, IND: 1 },
-        WAS: { MIA: 1, STL: 1, NYG: 1, PHI: 1, ATL: 1, NYJ: 1, TB: 1, NE: 1, NO: 1, CAR: 1, NYG: 1, DAL: 1, CHI: 1, BUF: 1, PHI: 1, DAL: 1 }
+        ARI: { NE: 1, TB: 1, BUF: 1, LA: 1, SF: 1, NYJ: 1, SEA: 1, CAR: 1, SF: 1, MIN: 1, ATL: 1, WAS: 1, MIA: 1, NO: 1, SEA: 1, LA: 1 },
+        ATL: { TB: 1, OAK: 1, NO: 1, CAR: 1, DEN: 1, SEA: 1, SD: 1, GB: 1, TB: 1, PHI: 1, ARI: 1, KC: 1, LA: 1, SF: 1, CAR: 1, NO: 1 },
+        BAL: { BUF: 1, CLE: 1, JAC: 1, OAK: 1, WAS: 1, NYG: 1, NYJ: 1, PIT: 1, CLE: 1, DAL: 1, CIN: 1, MIA: 1, NE: 1, PHI: 1, PIT: 1, CIN: 1 },
+        BUF: { BAL: 1, NYJ: 1, ARI: 1, NE: 1, LA: 1, SF: 1, MIA: 1, NE: 1, SEA: 1, CIN: 1, JAC: 1, OAK: 1, PIT: 1, CLE: 1, MIA: 1, NYJ: 1 },
+        CAR: { DEN: 1, SF: 1, MIN: 1, ATL: 1, TB: 1, NO: 1, ARI: 1, LA: 1, KC: 1, NO: 1, OAK: 1, SEA: 1, SD: 1, WAS: 1, ATL: 1,  TB: 1 },
+        CHI: { HOU: 1, PHI: 1, DAL: 1, DET: 1, IND: 1, JAC: 1, GB: 1, MIN: 1, TB: 1, NYG: 1, TEN: 1, SF: 1, DET: 1, GB: 1, WAS: 1, MIN: 1 },
+        CIN: { NYJ: 1, PIT: 1, DEN: 1, MIA: 1, DAL: 1, NE: 1, CLE: 1, WAS: 1, NYG: 1, BUF: 1, BAL: 1, PHI: 1, CLE: 1, PIT: 1, HOU: 1, BAL: 1 },
+        CLE: { PHI: 1, BAL: 1, MIA: 1, WAS: 1, NE: 1, TEN: 1, CIN: 1, NYJ: 1, DAL: 1, BAL: 1, PIT: 1, NYG: 1, CIN: 1, BUF: 1, SD: 1, PIT: 1 },
+        DAL: { NYG: 1, WAS: 1, CHI: 1, SF: 1, CIN: 1, GB: 1, PHI: 1, CLE: 1, PIT: 1, BAL: 1, WAS: 1, MIN: 1, NYG: 1, TB: 1, DET: 1, PHI: 1 },
+        DEN: { CAR: 1, IND: 1, CIN: 1, TB: 1, ATL: 1, SD: 1, HOU: 1, SD: 1, OAK: 1, NO: 1, KC: 1, JAC: 1, TEN: 1, NE: 1, KC: 1, OAK: 1 },
+        DET: { IND: 1, TEN: 1, GB: 1, CHI: 1, PHI: 1, LA: 1, WAS: 1, HOU: 1, MIN: 1, JAC: 1, MIN: 1, NO: 1, CHI: 1, NYG: 1, DAL: 1, GB: 1 },
+        GB: { JAC: 1, MIN: 1, DET: 1, NYG: 1, DAL: 1, CHI: 1, ATL: 1, IND: 1, TEN: 1, WAS: 1, PHI: 1, HOU: 1, SEA: 1, CHI: 1, MIN: 1, DET: 1 },
+        HOU: { CHI: 1, KC: 1, NE: 1, TEN: 1, MIN: 1, IND: 1, DEN: 1, DET: 1, JAC: 1, OAK: 1, SD: 1, GB: 1, IND: 1, JAC: 1, CIN: 1, TEN: 1 },
+        IND: { DET: 1, DEN: 1, SD: 1, JAC: 1, CHI: 1, HOU: 1, TEN: 1, KC: 1, GB: 1, TEN: 1, PIT: 1, NYJ: 1, HOU: 1, MIN: 1, OAK: 1, JAC: 1 },
+        JAC: { GB: 1, SD: 1, BAL: 1, IND: 1, CHI: 1, OAK: 1, TEN: 1, KC: 1, HOU: 1, DET: 1, BUF: 1, DEN: 1, MIN: 1, HOU: 1, TEN: 1, IND: 1 },
+        KC: { SD: 1, HOU: 1, NYJ: 1, PIT: 1, OAK: 1, NO: 1, IND: 1, JAC: 1, CAR: 1, TB: 1, DEN: 1, ATL: 1, OAK: 1, TEN: 1, DEN: 1, SD: 1 },
+		LA: { SF: 1, SEA: 1, TB: 1, ARI: 1, BUF: 1, DET: 1, NYG: 1, CAR: 1, NYJ: 1, MIA: 1, NO: 1, NE: 1, ATL: 1, SEA: 1, SF: 1, ARI: 1 },
+        MIA: { SEA: 1, NE: 1, CLE: 1, CIN: 1, TEN: 1, PIT: 1, BUF: 1, NYJ: 1, SD: 1, LA: 1, SF: 1, BAL: 1, ARI: 1, NYJ: 1, BUF: 1, NE: 1 },
+        MIN: { TEN: 1, GB: 1, CAR: 1, NYG: 1, HOU: 1, PHI: 1, CHI: 1, DET: 1, WAS: 1, ARI: 1, DET: 1, DAL: 1, JAC: 1, IND: 1, GB: 1, CHI: 1 },
+        NE: { ARI: 1, MIA: 1, HOU: 1, BUF: 1, CLE: 1, CIN: 1, PIT: 1, BUF: 1, SEA: 1, SF: 1, NYJ: 1, LA: 1, BAL: 1, DEN: 1, NYJ: 1, MIA: 1 },
+        NO: { OAK: 1, NYG: 1, ATL: 1, SD: 1, CAR: 1, KC: 1, SEA: 1, SF: 1, DEN: 1, CAR: 1, LA: 1, DET: 1, TB: 1, ARI: 1, TB: 1, ATL: 1 },
+        NYG: { DAL: 1, NO: 1, WAS: 1, MIN: 1, GB: 1, BAL: 1, LA: 1, PHI: 1, CIN: 1, CHI: 1, CLE: 1, PIT: 1, DAL: 1, DET: 1, PHI: 1, WAS: 1 },
+        NYJ: { CIN: 1, BUF: 1, KC: 1, SEA: 1, PIT: 1, ARI: 1, BAL: 1, CLE: 1, MIA: 1, LA: 1, NE: 1, IND: 1, SF: 1, MIA: 1, NE: 1, BUF: 1 },
+        OAK: { NO: 1, ATL: 1, TEN: 1, BAL: 1, SD: 1, KC: 1, JAC: 1, TB: 1, DEN: 1, HOU: 1, CAR: 1, BUF: 1, KC: 1, SD: 1, IND: 1, DEN: 1 },
+        PHI: { CLE: 1, CHI: 1, PIT: 1, DET: 1, WAS: 1, MIN: 1, DAL: 1, NYG: 1, ATL: 1, SEA: 1, GB: 1, CIN: 1, WAS: 1, BAL: 1, NYG: 1, DAL: 1 },
+        PIT: { WAS: 1, CIN: 1, PHI: 1, KC: 1, NYJ: 1, MIA: 1, NE: 1, BAL: 1, DAL: 1, CLE: 1, IND: 1, NYG: 1, BUF: 1, CIN: 1, BAL: 1, CLE: 1 },
+        SD: { KC: 1, JAC: 1, IND: 1, NO: 1, OAK: 1, DEN: 1, ATL: 1, DEN: 1, TEN: 1, MIA: 1, HOU: 1, TB: 1, CAR: 1, OAK: 1, CLE: 1, KC: 1 },
+        SEA: { MIA: 1, LA: 1, SF: 1, NYJ: 1, ATL: 1, ARI: 1, NO: 1, BUF: 1, NE: 1, PHI: 1, TB: 1, CAR: 1, GB: 1, LA: 1, ARI: 1, SF: 1 },
+        SF: { LA: 1, CAR: 1, SEA: 1, DAL: 1, ARI: 1, BUF: 1, TB: 1, NO: 1, ARI: 1, NE: 1, MIA: 1, CHI: 1, NYJ: 1, ATL: 1, LA: 1, SEA: 1 },
+        TB: { ATL: 1, ARI: 1, LA: 1, DEN: 1, CAR: 1, SF: 1, OAK: 1, ATL: 1, CHI: 1, KC: 1, SEA: 1, SD: 1, NO: 1, DAL: 1, NO: 1, CAR: 1 },
+        TEN: { MIN: 1, DET: 1, OAK: 1, HOU: 1, MIA: 1, CLE: 1, IND: 1, JAC: 1, SD: 1, GB: 1, IND: 1, CHI: 1, DEN: 1, KC: 1, JAC: 1, HOU: 1 },
+        WAS: { PIT: 1, DAL: 1, NYG: 1, CLE: 1, BAL: 1, PHI: 1, DET: 1, CIN: 1, MIN: 1, GB: 1, DAL: 1, ARI: 1, PHI: 1, CAR: 1, CHI: 1, NYG: 1 }
     }, unique_foes = 13,
-    NFL_teams = ["ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAC", "KC", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "OAK", "PHI", "PIT", "SD", "SEA", "SF", "STL", "TB", "TEN", "WAS"],
+    NFL_teams = ["ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAC", "KC", "LA", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "OAK", "PHI", "PIT", "SD", "SEA", "SF", "TB", "TEN", "WAS"],
     NFL_teams_len = NFL_teams.length,
     division_teams = {
         AE: ["BUF", "MIA", "NE", "NYJ"],
@@ -176,7 +177,7 @@ var games_cookie_name = "NFL2014",
         NE: ["DAL", "NYG", "PHI", "WAS"],
         NN: ["CHI", "DET", "GB", "MIN"],
         NS: ["ATL", "CAR", "NO", "TB"],
-        NW: ["ARI", "SF", "STL", "SEA"]
+        NW: ["ARI", "LA", "SF", "SEA"]
     },
     division = {
         BUF: "AE",
@@ -208,8 +209,8 @@ var games_cookie_name = "NFL2014",
         NO: "NS",
         TB: "NS",
         ARI: "NW",
+		LA: "NW",
         SF: "NW",
-        STL: "NW",
         SEA: "NW"
     },
     table_offsets = {
@@ -276,7 +277,7 @@ var games_cookie_name = "NFL2014",
         "TB",
         "ARI",
         "SF",
-        "STL",
+        "LA",
         "SEA"
     ],
     team_name = {
@@ -296,6 +297,7 @@ var games_cookie_name = "NFL2014",
         IND: "Indianapolis Colts",
         JAC: "Jacksonville Jaguars",
         KC: "Kansas City Chiefs",
+		LA: "Los Angeles Rams",
         MIA: "Miami Dolphins",
         MIN: "Minnesota Vikings",
         NE: "New England Patriots",
@@ -308,7 +310,6 @@ var games_cookie_name = "NFL2014",
         SD: "San Diego Chargers",
         SEA: "Seattle Seahawks",
         SF: "San Francisco 49ers",
-        STL: "St. Louis Rams",
         TB: "Tampa Bay Buccaneers",
         TEN: "Tennessee Titans",
         WAS: "Washington Redskins"
@@ -1518,22 +1519,15 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmplZmaaqqZqVZC_');
-	set_all_rankings();
-    set_game_cookie(cookie_letters, true);
-	edit_playoffs();
-	show_week_tab("week-17");
-}
-
-function update_outcomes2() {
+	//Season has not started yet
+	alert("NFL Season has not started yet, so nothing was updated");
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmplZmaaalaqpqB_');
-	set_all_rankings();
-    set_game_cookie(cookie_letters, true);
-	edit_playoffs();
-	show_week_tab("week-17");
+	//set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
+	//set_all_rankings();
+    //set_game_cookie(cookie_letters, true);
+	//edit_playoffs();
+	//show_week_tab("week-16");
 }
-
 
 
 function explain_ties() {
@@ -1559,203 +1553,210 @@ function explain_ties() {
 
 function edit_playoffs() {
 	
-	//Wild Card
-	var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
-	var afcWildCard2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[3].name;
-	var nfcWildCard1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[4].name;
-	var nfcWildCard2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[3].name;
-	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
-	playoff_game_position[afcWildCard1] = 0;
-	playoff_game_position[afcWildCard2] = 1;
-	playoff_game_position[nfcWildCard1] = 2;
-	playoff_game_position[nfcWildCard2] = 3;
+	try {
 	
-	if((active_tab != 'week-18') && (active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
-		playoff_game_states[afcWildCard1] = 0;
-		playoff_game_states[afcWildCard2] = 0;
-		playoff_game_states[nfcWildCard1] = 0;
-		playoff_game_states[nfcWildCard2] = 0;
-	}
+		//Wild Card
+		var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
+		var afcWildCard2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[3].name;
+		var nfcWildCard1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[4].name;
+		var nfcWildCard2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[3].name;
+		week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
+		playoff_game_position[afcWildCard1] = 0;
+		playoff_game_position[afcWildCard2] = 1;
+		playoff_game_position[nfcWildCard1] = 2;
+		playoff_game_position[nfcWildCard2] = 3;
+		
+		if((active_tab != 'week-18') && (active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
+			playoff_game_states[afcWildCard1] = 0;
+			playoff_game_states[afcWildCard2] = 0;
+			playoff_game_states[nfcWildCard1] = 0;
+			playoff_game_states[nfcWildCard2] = 0;
+		}
+		
+		//Divisional
+		if(playoff_game_states[afcWildCard1] == 1 && playoff_game_states[afcWildCard2] == 1) {
+			
+			var afcDivisional1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+			var afcDivisional2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+		
+		} else if(playoff_game_states[afcWildCard1] == 1 && playoff_game_states[afcWildCard2] == 2) {
+			
+			var afcDivisional1 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+			var afcDivisional2 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+			
+		} else if(playoff_game_states[afcWildCard1] == 2 && playoff_game_states[afcWildCard2] == 1) {
+			
+			var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+			var afcDivisional2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+			
+		} else if(playoff_game_states[afcWildCard1] == 2 && playoff_game_states[afcWildCard2] == 2) {
+			
+			var afcDivisional1 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+			var afcDivisional2 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+			
+		} else {
+			
+			var afcDivisional1 = 'NA-NA';
+			var afcDivisional2 = 'NA-NA';
+		}
+		if(playoff_game_states[nfcWildCard1] == 1 && playoff_game_states[nfcWildCard2] == 1) {
+			
+			var nfcDivisional1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+			var nfcDivisional2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+		
+		} else if(playoff_game_states[nfcWildCard1] == 1 && playoff_game_states[nfcWildCard2] == 2) {
+			
+			var nfcDivisional1 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+			var nfcDivisional2 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+			
+		} else if(playoff_game_states[nfcWildCard1] == 2 && playoff_game_states[nfcWildCard2] == 1) {
+			
+			var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+			var nfcDivisional2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+			
+		} else if(playoff_game_states[nfcWildCard1] == 2 && playoff_game_states[nfcWildCard2] == 2) {
+			
+			var nfcDivisional1 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+			var nfcDivisional2 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+			
+		} else {
+			
+			var nfcDivisional1 = 'NA-NA';
+			var nfcDivisional2 = 'NA-NA';
+		}
+		
+		if(afcDivisional1 != 'NA-NA' && afcDivisional2 != 'NA-NA' && nfcDivisional1 != 'NA-NA' && nfcDivisional2 != 'NA-NA') {
+			week_lists[18] = [afcDivisional1, afcDivisional2, nfcDivisional1, nfcDivisional2];
+		} else {
+			week_lists[18] = [];
+		}
+		
+		playoff_game_position[afcDivisional1] = 4;
+		playoff_game_position[afcDivisional2] = 5;
+		playoff_game_position[nfcDivisional1] = 6;
+		playoff_game_position[nfcDivisional2] = 7;
+		
+		if((active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
+			
+			playoff_game_states[afcDivisional1] = 0;
+			playoff_game_states[afcDivisional2] = 0;
+			playoff_game_states[nfcDivisional1] = 0;
+			playoff_game_states[nfcDivisional2] = 0;
+		}
+		
+		//Conference Championships
+		if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 2) {
+			
+			var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+		
+		} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 2) {
+			
+			var splitter = afcDivisional1.split("-");
+			var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[1].name;
+			
+		} else if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 1) {
+			
+			var splitter = afcDivisional2.split("-");
+			var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[2].name;
+			
+		} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 1) {
+			
+			var splitter1 = afcDivisional1.split("-");
+			var splitter2 = afcDivisional2.split("-");
+			var afcChampionship = splitter2[0] + '-' + splitter1[0];
+			
+		} else {
+			
+			var afcChampionship = 'NA-NA';
+		}
+		if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 2) {
+			
+			var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+		
+		} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 2) {
+			
+			var splitter = nfcDivisional1.split("-");
+			var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[1].name;
+			
+		} else if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 1) {
+			
+			var splitter = nfcDivisional2.split("-");
+			var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[2].name;
+			
+		} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 1) {
+			
+			var splitter1 = nfcDivisional1.split("-");
+			var splitter2 = nfcDivisional2.split("-");
+			var nfcChampionship = splitter2[0] + '-' + splitter1[0];
+			
+		} else {
+			
+			var nfcChampionship = 'NA-NA';
+		}
+		
+		if(afcChampionship != 'NA-NA' && nfcChampionship != 'NA-NA') {
+		week_lists[19] = [afcChampionship, nfcChampionship];
+		} else {
+			week_lists[19] = [];
+		}
+		
+		playoff_game_position[afcChampionship] = 8;
+		playoff_game_position[nfcChampionship] = 9;
+		
+		if((active_tab != 'week-20') && (active_tab != 'week-21')) {
+			playoff_game_states[afcChampionship] = 0;
+			playoff_game_states[nfcChampionship] = 0;
+		}
+		
+		//Super Bowl
+		if(playoff_game_states[afcChampionship] == 1) {
+			
+			var splitter3 = afcChampionship.split("-");
+			var afcChampion = splitter3[0];
+		
+		} else if(playoff_game_states[afcChampionship] == 2) {
+			
+			var splitter3 = afcChampionship.split("-");
+			var afcChampion = splitter3[1];
+			
+		} else {
+			
+			var afcChampion = 'NA';
+		}
+		if(playoff_game_states[nfcChampionship] == 1) {
+			
+			var splitter4 = nfcChampionship.split("-");
+			var nfcChampion = splitter4[0];
+		
+		} else if(playoff_game_states[nfcChampionship] == 2) {
+			
+			var splitter4 = nfcChampionship.split("-");
+			var nfcChampion = splitter4[1];
+			
+		} else {
+			
+			var nfcChampion = 'NA';
+		}
+		var superBowl = nfcChampion + '-' + afcChampion;
+		
+		if(superBowl != 'NA-NA') {
+			
+			week_lists[20] = [superBowl];
+		
+		} else {
+			
+			week_lists[20] = [];
+		}
+		
+		playoff_game_position[superBowl] = 10;
+		
+		if(active_tab != 'week-21') {
+			
+			playoff_game_states[superBowl] = 0;
+		}
 	
-	//Divisional
-	if(playoff_game_states[afcWildCard1] == 1 && playoff_game_states[afcWildCard2] == 1) {
+	} catch(err) {
 		
-		var afcDivisional1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
-		var afcDivisional2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	
-	} else if(playoff_game_states[afcWildCard1] == 1 && playoff_game_states[afcWildCard2] == 2) {
-		
-		var afcDivisional1 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
-		var afcDivisional2 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-		
-	} else if(playoff_game_states[afcWildCard1] == 2 && playoff_game_states[afcWildCard2] == 1) {
-		
-		var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
-		var afcDivisional2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-		
-	} else if(playoff_game_states[afcWildCard1] == 2 && playoff_game_states[afcWildCard2] == 2) {
-		
-		var afcDivisional1 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
-		var afcDivisional2 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-		
-	} else {
-		
-		var afcDivisional1 = 'NA-NA';
-		var afcDivisional2 = 'NA-NA';
-	}
-	if(playoff_game_states[nfcWildCard1] == 1 && playoff_game_states[nfcWildCard2] == 1) {
-		
-		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
-		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
-	
-	} else if(playoff_game_states[nfcWildCard1] == 1 && playoff_game_states[nfcWildCard2] == 2) {
-		
-		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
-		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
-		
-	} else if(playoff_game_states[nfcWildCard1] == 2 && playoff_game_states[nfcWildCard2] == 1) {
-		
-		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
-		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
-		
-	} else if(playoff_game_states[nfcWildCard1] == 2 && playoff_game_states[nfcWildCard2] == 2) {
-		
-		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
-		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
-		
-	} else {
-		
-		var nfcDivisional1 = 'NA-NA';
-		var nfcDivisional2 = 'NA-NA';
-	}
-	
-	if(afcDivisional1 != 'NA-NA' && afcDivisional2 != 'NA-NA' && nfcDivisional1 != 'NA-NA' && nfcDivisional2 != 'NA-NA') {
-		week_lists[18] = [afcDivisional1, afcDivisional2, nfcDivisional1, nfcDivisional2];
-	} else {
-		week_lists[18] = [];
-	}
-	
-	playoff_game_position[afcDivisional1] = 4;
-	playoff_game_position[afcDivisional2] = 5;
-	playoff_game_position[nfcDivisional1] = 6;
-	playoff_game_position[nfcDivisional2] = 7;
-	
-	if((active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
-		
-		playoff_game_states[afcDivisional1] = 0;
-		playoff_game_states[afcDivisional2] = 0;
-		playoff_game_states[nfcDivisional1] = 0;
-		playoff_game_states[nfcDivisional2] = 0;
-	}
-	
-	//Conference Championships
-	if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 2) {
-		
-		var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	
-	} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 2) {
-		
-		var splitter = afcDivisional1.split("-");
-		var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[1].name;
-		
-	} else if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 1) {
-		
-		var splitter = afcDivisional2.split("-");
-		var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[2].name;
-		
-	} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 1) {
-		
-		var splitter1 = afcDivisional1.split("-");
-		var splitter2 = afcDivisional2.split("-");
-		var afcChampionship = splitter2[0] + '-' + splitter1[0];
-		
-	} else {
-		
-		var afcChampionship = 'NA-NA';
-	}
-	if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 2) {
-		
-		var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
-	
-	} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 2) {
-		
-		var splitter = nfcDivisional1.split("-");
-		var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[1].name;
-		
-	} else if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 1) {
-		
-		var splitter = nfcDivisional2.split("-");
-		var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[2].name;
-		
-	} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 1) {
-		
-		var splitter1 = nfcDivisional1.split("-");
-		var splitter2 = nfcDivisional2.split("-");
-		var nfcChampionship = splitter2[0] + '-' + splitter1[0];
-		
-	} else {
-		
-		var nfcChampionship = 'NA-NA';
-	}
-	
-	if(afcChampionship != 'NA-NA' && nfcChampionship != 'NA-NA') {
-	week_lists[19] = [afcChampionship, nfcChampionship];
-	} else {
-		week_lists[19] = [];
-	}
-	
-	playoff_game_position[afcChampionship] = 8;
-	playoff_game_position[nfcChampionship] = 9;
-	
-	if((active_tab != 'week-20') && (active_tab != 'week-21')) {
-		playoff_game_states[afcChampionship] = 0;
-		playoff_game_states[nfcChampionship] = 0;
-	}
-	
-	//Super Bowl
-	if(playoff_game_states[afcChampionship] == 1) {
-		
-		var splitter3 = afcChampionship.split("-");
-		var afcChampion = splitter3[0];
-	
-	} else if(playoff_game_states[afcChampionship] == 2) {
-		
-		var splitter3 = afcChampionship.split("-");
-		var afcChampion = splitter3[1];
-		
-	} else {
-		
-		var afcChampion = 'NA';
-	}
-	if(playoff_game_states[nfcChampionship] == 1) {
-		
-		var splitter4 = nfcChampionship.split("-");
-		var nfcChampion = splitter4[0];
-	
-	} else if(playoff_game_states[nfcChampionship] == 2) {
-		
-		var splitter4 = nfcChampionship.split("-");
-		var nfcChampion = splitter4[1];
-		
-	} else {
-		
-		var nfcChampion = 'NA';
-	}
-	var superBowl = nfcChampion + '-' + afcChampion;
-	
-	if(superBowl != 'NA-NA') {
-		
-		week_lists[20] = [superBowl];
-	
-	} else {
-		
-		week_lists[20] = [];
-	}
-	
-	playoff_game_position[superBowl] = 10;
-	
-	if(active_tab != 'week-21') {
-		
-		playoff_game_states[superBowl] = 0;
+		//Do Nothing
 	}
 }
