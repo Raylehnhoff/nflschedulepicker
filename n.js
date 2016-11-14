@@ -1519,7 +1519,7 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
