@@ -1519,14 +1519,11 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	//Season has not started yet
-	alert("NFL Season has not started yet, so nothing was updated");
-	
-	//set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
-	//set_all_rankings();
-    //set_game_cookie(cookie_letters, true);
-	//edit_playoffs();
-	//show_week_tab("week-16");
+	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_all_rankings();
+    set_game_cookie(cookie_letters, true);
+	edit_playoffs();
+	show_week_tab("week-10");
 }
 
 
