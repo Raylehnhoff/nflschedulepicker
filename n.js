@@ -1519,11 +1519,19 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpmBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
 	show_week_tab("week-10");
+}
+function update_outcomes2() {
+	
+	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpmplWalqWqpmlVmlWafllVVapmaWZpVlqqWpmlVB_');
+	set_all_rankings();
+    set_game_cookie(cookie_letters, true);
+	edit_playoffs();
+	show_week_tab("week-17");
 }
 
 
