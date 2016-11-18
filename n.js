@@ -1519,7 +1519,7 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpmBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpmlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
@@ -1527,7 +1527,7 @@ function update_outcomes() {
 }
 function update_outcomes2() {
 	
-	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpmplWalqWqpmlVmlWafllVVapmaWZpVlqqWpmlVB_');
+	set_games_from_string('-WWqZVmpapmmWmVqaqWmVplWammqaqZqZqpVrXamqlaWpalpmllWalqWqpmlVmlWafllVVapmaWZpVlqqWpmlVB_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
